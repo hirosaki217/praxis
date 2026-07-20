@@ -57,7 +57,7 @@ npx shadcn@latest add button card badge input textarea label select checkbox rad
 1. `vite.config.ts`: thêm plugin `tailwindcss()` từ `@tailwindcss/vite` + alias `@` → `src`.
 2. `tsconfig.app.json`: bật `strict`, `noUncheckedIndexedAccess`, `paths "@/*"` (**không** dùng `baseUrl` — TS7 deprecated). Xem Conventions §4.
 3. `.oxlintrc.json`: plugins `react/typescript/import`; warn `no-explicit-any`, `no-console`, `no-debugger`.
-4. `.prettierrc`: `singleQuote`, `printWidth: 100`, `semi: true`.
+4. `.prettierrc`: `singleQuote: false`, `printWidth: 100`, `semi: false`, `trailingComma: "all"` (khớp style shadcn — double quote, không dấu chấm — để 29 file shadcn đã sinh không bị reformat).
 5. **Token v4**: sau khi `shadcn init` sinh `src/index.css` (đã có `@import "tailwindcss"; @custom-variant dark; :root{} .dark{} @theme inline{}`), thay giá trị `:root`/`.dark`/`@theme inline` bằng **Indigo tokens bản v4** (DESIGN_SYSTEM §3 — bản v4). v4 **không có `tailwind.config.ts`**, token định nghĩa ngay trong CSS qua `@theme inline`.
 6. `src/lib/utils.ts`: `cn()` (shadcn đã tạo) + thêm `formatCurrency()`, `formatDate()`.
 
@@ -75,9 +75,9 @@ export default defineConfig({
 ```
 
 **Checklist P1**
-- [ ] `bg-primary`, `bg-channel-delivery` render đúng màu (test 1 div).
-- [ ] Toggle class `dark` trên `<html>` → nền đổi.
-- [ ] `import { cn } from '@/lib/utils'` hoạt động.
+- [x] `bg-primary`, `bg-channel-delivery` render đúng màu (test 1 div).
+- [x] Toggle class `dark` trên `<html>` → nền đổi.
+- [x] `import { cn } from '@/lib/utils'` hoạt động.
 
 ---
 
