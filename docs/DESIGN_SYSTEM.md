@@ -6,7 +6,7 @@
 
 ---
 
-> ⚠️ **Bản v4 (đang dùng)**: dự án dùng Tailwind **v4 + `@tailwindcss/vite`** (CSS-first, **không có `tailwind.config.ts`**). §3/§4 dưới đây đang ở dạng **v3** (HSL + `@tailwind` directives + `tailwind.config`). Bản **v4** (`:root`/`.dark` + `@theme inline`, paste vào `src/index.css` sau `shadcn init`) sẽ được bổ sung ngay khi inject token Indigo — **quy tắc màu và component không đổi**.
+> ✅ **Bản v4 đã inject** vào `src/index.css` (source of truth): `:root` / `.dark` + `@theme inline` với Indigo + semantic + channel tokens. Dựng trên Tailwind **v4 + `@tailwindcss/vite`** (CSS-first, **không có `tailwind.config.ts`**). §3/§4 dưới đây là **tham khảo dạng v3** (giá trị HSL trong §2 vẫn chính xác); cấu trúc v4 thực tế xem trực tiếp `src/index.css`. Quy tắc màu/component không đổi. Font thực tế: **Geist Variable** (shadcn preset) — nếu muốn Inter thì cài `@fontsource-variable/inter` và đổi `--font-sans`.
 
 ## Mục lục
 
