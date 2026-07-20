@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Board — Admin Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="admin" data-screen="a02-orders">
+  <div id="admin-content">
+
+    <!-- Filter bar -->
+    <div class="box row between center wrap">
+      <div class="row center wrap" style="gap:8px;">
+        <div class="input" style="min-width:200px;">🔍 Tìm theo mã / tên khách / SĐT</div>
+        <div class="seg"><div class="opt on">Tất cả kênh</div><div class="opt">🛵 Giao</div><div class="opt">🏪 Lấy</div><div class="opt">🍽 Quán</div></div>
+        <div class="seg"><div class="opt">Thanh toán ▾</div></div>
+        <div class="seg"><div class="opt">Hôm nay ▾</div></div>
+      </div>
+      <div class="row"><span class="tag sm">20 kết quả</span><div class="btn">↻ Làm mới</div></div>
+    </div>
+
+    <!-- Kanban -->
+    <div class="kanban mt-m">
+      <!-- Col 1 -->
+      <div class="kcol">
+        <div class="khead"><span>● Mới <span class="tag sm">5</span></span><span class="muted tiny">11:00–</span></div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20453</b><span class="tag accent sm">🛵 Giao</span></div>
+          <div class="small muted">Nguyễn V. An · 738k</div>
+          <div class="line w-90" style="margin:6px 0;"></div>
+          <div class="row between"><span class="muted tiny">2 pizza + combo</span><span class="tag sm">Xác nhận ›</span></div>
+        </div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20449</b><span class="tag sm">🍽 Quán · Bàn 4</span></div>
+          <div class="small muted">Lê H. Châu · 412k</div>
+          <div class="row between" style="margin-top:6px;"><span class="muted tiny">3 món</span><span class="tag sm">Xác nhận ›</span></div>
+        </div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20448</b><span class="tag sm">🏪 Lấy</span></div>
+          <div class="small muted">Phạm D. Dũng · 289k</div>
+          <div class="row between" style="margin-top:6px;"><span class="muted tiny">1 pizza</span><span class="tag sm">Xác nhận ›</span></div>
+        </div>
+      </div>
+      <!-- Col 2 -->
+      <div class="kcol">
+        <div class="khead"><span>● Đang làm <span class="tag sm">4</span></span></div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20452</b><span class="tag warn sm">🛵 Giao</span></div>
+          <div class="small muted">Trần T. Bình · 560k</div>
+          <div class="line w-70" style="margin:6px 0;"></div>
+          <div class="row between"><span class="muted tiny">Bếp: ~8 phút</span><span class="tag sm">Sẵn sàng ›</span></div>
+        </div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20445</b><span class="tag warn sm">🍽 Quán · Bàn 7</span></div>
+          <div class="small muted">Võ E. Emerald · 320k</div>
+          <div class="row between" style="margin-top:6px;"><span class="muted tiny">Bếp: ~5 phút</span><span class="tag sm">Phục vụ ›</span></div>
+        </div>
+      </div>
+      <!-- Col 3 -->
+      <div class="kcol">
+        <div class="khead"><span>● Đang giao / chờ lấy <span class="tag sm">3</span></span></div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20451</b><span class="tag sm">🛵 Đang giao</span></div>
+          <div class="small muted">Lê H. Châu · 738k</div>
+          <div class="line w-50" style="margin:6px 0;"></div>
+          <div class="row between"><span class="muted tiny">Shipper Trần B · ~12 phút</span></div>
+        </div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20440</b><span class="tag sm">🏪 Chờ lấy</span></div>
+          <div class="small muted">Đặng G. Giang · 199k</div>
+          <div class="row between" style="margin-top:6px;"><span class="muted tiny">Sẵn sàng từ 11:50</span></div>
+        </div>
+      </div>
+      <!-- Col 4 -->
+      <div class="kcol">
+        <div class="khead"><span style="color:var(--wf-good)">● Hoàn tất <span class="tag good sm">8</span></span></div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20450</b><span class="tag good sm">✓ Giao</span></div>
+          <div class="small muted">Phạm D. Dũng · 289k</div>
+        </div>
+        <div class="kcard">
+          <div class="row between center"><b class="small">#PF-20438</b><span class="tag good sm">✓ Quán</span></div>
+          <div class="small muted">Bùi H. Hà · 455k</div>
+        </div>
+        <div class="kcard" style="opacity:.7;">
+          <div class="row between center"><b class="small">#PF-20430</b><span class="tag bad sm">✕ Hủy</span></div>
+          <div class="small muted">hoàn tiền 50% · manager</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note mt-m"><b>Annotation:</b> kéo thẻ giữa cột = chuyển trạng thái qua <b>order state machine</b> (chỉ transition hợp lệ mới được). Nút "Xác nhận/Sẵn sàng/…" = advance. <b>Hoàn tiền/hủy</b> chỉ <b>manager</b> được (RBAC). Mỗi cột = một nhóm trạng thái theo kênh.</div>
+  </div>
+
+  <script src="chrome.js"></script>
+  <script src="admin-shell.js"></script>
+</body>
+</html>

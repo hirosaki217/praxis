@@ -1,0 +1,155 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]: Wireframe
+    - generic [ref=e4]: Admin
+    - generic [ref=e5]: Order Board
+    - link "⊞ Tất cả" [ref=e6] [cursor=pointer]:
+      - /url: index.html
+    - link "← Dashboard" [ref=e7] [cursor=pointer]:
+      - /url: a01-dashboard.html
+    - link "Menu Mgmt →" [ref=e8] [cursor=pointer]:
+      - /url: a03-menu.html
+  - generic [ref=e9]:
+    - complementary [ref=e10]:
+      - generic [ref=e11]: 🍕 PizzaForge Admin
+      - generic [ref=e12]: Tổng quan
+      - link "📊 Dashboard" [ref=e13] [cursor=pointer]:
+        - /url: a01-dashboard.html
+      - link "📋 Order Board" [ref=e14] [cursor=pointer]:
+        - /url: a02-orders.html
+      - generic [ref=e15]: Quản lý
+      - link "🍕 Menu" [ref=e16] [cursor=pointer]:
+        - /url: a03-menu.html
+      - link "🎟 Promotions" [ref=e17] [cursor=pointer]:
+        - /url: a04-promotions.html
+      - link "👥 Customers" [ref=e18] [cursor=pointer]:
+        - /url: a05-customers.html
+      - link "📦 Inventory" [ref=e19] [cursor=pointer]:
+        - /url: a07-inventory.html
+      - generic [ref=e20]: Hệ thống
+      - link "🏢 Branches" [ref=e21] [cursor=pointer]:
+        - /url: a06-branches.html
+      - link "🔐 Staff & RBAC" [ref=e22] [cursor=pointer]:
+        - /url: a08-staff.html
+      - link "📈 Reports" [ref=e23] [cursor=pointer]:
+        - /url: a09-reports.html
+      - link "⚙ Settings" [ref=e24] [cursor=pointer]:
+        - /url: a10-settings.html
+      - link "← Tất cả màn hình" [ref=e25] [cursor=pointer]:
+        - /url: index.html
+    - main [ref=e26]:
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]: Admin
+          - generic [ref=e30]: Quản lý đơn (Order Board)
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - generic [ref=e33]: Tất cả chi nhánh
+            - generic [ref=e34]: HN
+            - generic [ref=e35]: HCM
+            - generic [ref=e36]: ĐN
+          - generic [ref=e37]: 🔔
+          - generic [ref=e38]:
+            - text: 👤
+            - generic [ref=e39]: Manager
+            - text: ▾
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]: 🔍 Tìm theo mã / tên khách / SĐT
+          - generic [ref=e43]:
+            - generic [ref=e44]: Tất cả kênh
+            - generic [ref=e45]: 🛵 Giao
+            - generic [ref=e46]: 🏪 Lấy
+            - generic [ref=e47]: 🍽 Quán
+          - generic [ref=e48]: Thanh toán ▾
+          - generic [ref=e50]: Hôm nay ▾
+        - generic [ref=e52]:
+          - generic [ref=e53]: 20 kết quả
+          - generic [ref=e54]: ↻ Làm mới
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - text: ● Mới
+              - generic [ref=e59]: "5"
+            - generic [ref=e60]: 11:00–
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - generic [ref=e63]: "#PF-20453"
+              - generic [ref=e64]: 🛵 Giao
+            - generic [ref=e65]: Nguyễn V. An · 738k
+            - generic [ref=e67]:
+              - generic [ref=e68]: 2 pizza + combo
+              - generic [ref=e69]: Xác nhận ›
+          - generic [ref=e70]:
+            - generic [ref=e71]:
+              - generic [ref=e72]: "#PF-20449"
+              - generic [ref=e73]: 🍽 Quán · Bàn 4
+            - generic [ref=e74]: Lê H. Châu · 412k
+            - generic [ref=e75]:
+              - generic [ref=e76]: 3 món
+              - generic [ref=e77]: Xác nhận ›
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - generic [ref=e80]: "#PF-20448"
+              - generic [ref=e81]: 🏪 Lấy
+            - generic [ref=e82]: Phạm D. Dũng · 289k
+            - generic [ref=e83]:
+              - generic [ref=e84]: 1 pizza
+              - generic [ref=e85]: Xác nhận ›
+        - generic [ref=e86]:
+          - generic [ref=e88]:
+            - text: ● Đang làm
+            - generic [ref=e89]: "4"
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - generic [ref=e92]: "#PF-20452"
+              - generic [ref=e93]: 🛵 Giao
+            - generic [ref=e94]: Trần T. Bình · 560k
+            - generic [ref=e96]:
+              - generic [ref=e97]: "Bếp: ~8 phút"
+              - generic [ref=e98]: Sẵn sàng ›
+          - generic [ref=e99]:
+            - generic [ref=e100]:
+              - generic [ref=e101]: "#PF-20445"
+              - generic [ref=e102]: 🍽 Quán · Bàn 7
+            - generic [ref=e103]: Võ E. Emerald · 320k
+            - generic [ref=e104]:
+              - generic [ref=e105]: "Bếp: ~5 phút"
+              - generic [ref=e106]: Phục vụ ›
+        - generic [ref=e107]:
+          - generic [ref=e109]:
+            - text: ● Đang giao / chờ lấy
+            - generic [ref=e110]: "3"
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e113]: "#PF-20451"
+              - generic [ref=e114]: 🛵 Đang giao
+            - generic [ref=e115]: Lê H. Châu · 738k
+            - generic [ref=e117]: Shipper Trần B · ~12 phút
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - generic [ref=e121]: "#PF-20440"
+              - generic [ref=e122]: 🏪 Chờ lấy
+            - generic [ref=e123]: Đặng G. Giang · 199k
+            - generic [ref=e124]: Sẵn sàng từ 11:50
+        - generic [ref=e126]:
+          - generic [ref=e128]:
+            - text: ● Hoàn tất
+            - generic [ref=e129]: "8"
+          - generic [ref=e130]:
+            - generic [ref=e131]:
+              - generic [ref=e132]: "#PF-20450"
+              - generic [ref=e133]: ✓ Giao
+            - generic [ref=e134]: Phạm D. Dũng · 289k
+          - generic [ref=e135]:
+            - generic [ref=e136]:
+              - generic [ref=e137]: "#PF-20438"
+              - generic [ref=e138]: ✓ Quán
+            - generic [ref=e139]: Bùi H. Hà · 455k
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - generic [ref=e142]: "#PF-20430"
+              - generic [ref=e143]: ✕ Hủy
+            - generic [ref=e144]: hoàn tiền 50% · manager
+      - generic [ref=e145]: "Annotation: kéo thẻ giữa cột = chuyển trạng thái qua order state machine (chỉ transition hợp lệ mới được). Nút \"Xác nhận/Sẵn sàng/…\" = advance. Hoàn tiền/hủy chỉ manager được (RBAC). Mỗi cột = một nhóm trạng thái theo kênh."

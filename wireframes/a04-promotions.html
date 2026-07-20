@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promotions — Admin Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="admin" data-screen="a04-promotions">
+  <div id="admin-content">
+
+    <div class="box row between center wrap" style="padding:8px 14px;">
+      <div class="row wrap" style="gap:6px;">
+        <span class="tag accent">Tất cả (10)</span>
+        <span class="tag">Đang chạy (4)</span>
+        <span class="tag">Lên lịch (2)</span>
+        <span class="tag">Hết hạn (4)</span>
+      </div>
+      <div class="btn primary">+ Tạo voucher</div>
+    </div>
+
+    <div class="box mt-m">
+      <table class="table">
+        <thead>
+          <tr><th>Mã</th><th>Loại</th><th>Giá trị</th><th>Điều kiện</th><th>Lịch</th><th>Lượt dùng</th><th>Trạng thái</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bold">PIZZA30</td>
+            <td><span class="tag sm">% đơn</span></td>
+            <td class="bold">30%</td>
+            <td class="small muted">min 200k · cap 150k</td>
+            <td class="small">01/07 – 31/07</td>
+            <td class="small">412 / ∞</td>
+            <td><span class="tag good sm">● Đang chạy</span></td>
+            <td><span class="tag sm">Sửa</span></td>
+          </tr>
+          <tr>
+            <td class="bold">FREESHIP</td>
+            <td><span class="tag sm">Miễn ship</td>
+            <td class="bold">0đ phí</td>
+            <td class="small muted">đơn ≥ 250k · chỉ 🛵</td>
+            <td class="small">liên tục</td>
+            <td class="small">1.022 / ∞</td>
+            <td><span class="tag good sm">● Đang chạy</span></td>
+            <td><span class="tag sm">Sửa</span></td>
+          </tr>
+          <tr>
+            <td class="bold">COMBOGD</td>
+            <td><span class="tag sm">Combo</td>
+            <td class="bold">−30% bundle</td>
+            <td class="small muted">tự động · nhóm Combo</td>
+            <td class="small">liên tục</td>
+            <td class="small">—</td>
+            <td><span class="tag good sm">● Đang chạy</span></td>
+            <td><span class="tag sm">Sửa</span></td>
+          </tr>
+          <tr>
+            <td class="bold">WEEKEND50</td>
+            <td><span class="tag sm">Tiền mặt</td>
+            <td class="bold">50k</td>
+            <td class="small muted">min 300k · T7–CN</td>
+            <td class="small">lên lịch T7–CN</td>
+            <td class="small">88 / 500</td>
+            <td><span class="tag warn sm">◐ Lên lịch</span></td>
+            <td><span class="tag sm">Sửa</span></td>
+          </tr>
+          <tr>
+            <td class="bold">BOGO</td>
+            <td><span class="tag sm">Mua 1 tặng 1</td>
+            <td class="bold">pizza thứ 2</td>
+            <td class="small muted">cỡ bằng nhau · cùng đơn</td>
+            <td class="small">01/06 – 30/06</td>
+            <td class="small">540 / 540</td>
+            <td><span class="tag bad sm">○ Hết hạn</span></td>
+            <td><span class="tag sm">Sửa</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g-4 mt-m">
+      <div class="box flat"><div class="eyebrow">Loại giảm</div><div class="muted small mt-s">% đơn · tiền mặt · miễn ship · BOGO · giảm theo nhóm/combo</div></div>
+      <div class="box flat"><div class="eyebrow">Điều kiện</div><div class="muted small mt-s">đơn tối thiểu, giá trị tối đa (cap), kênh, chi nhánh</div></div>
+      <div class="box flat"><div class="eyebrow">Lịch trình</div><div class="muted small mt-s">from/to, lặp theo thứ, giờ vàng</div></div>
+      <div class="box flat"><div class="eyebrow">Giới hạn</div><div class="muted small mt-s">tổng lượt / mỗi khách, dùng 1 lần</div></div>
+    </div>
+
+    <div class="note mt-m"><b>Annotation:</b> kiểm tra hợp lệ + tính giảm diễn ra ở <b>pricing engine</b> (cùng logic FE/BE). "Điều kiện" quyết định voucher có áp được cho đơn hiện tại không (kênh/chi nhánh/ngưỡng).</div>
+  </div>
+
+  <script src="chrome.js"></script>
+  <script src="admin-shell.js"></script>
+</body>
+</html>

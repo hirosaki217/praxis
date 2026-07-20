@@ -1,0 +1,180 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]: Wireframe
+    - generic [ref=e4]: Popups
+    - generic [ref=e5]: Storefront Popups
+    - link "⊞ Tất cả" [ref=e6] [cursor=pointer]:
+      - /url: index.html
+    - generic: ←
+    - link "Admin Popups →" [ref=e7] [cursor=pointer]:
+      - /url: a11-popups.html
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - heading "Storefront — Popups & Dialogs" [level=2] [ref=e10]
+      - generic [ref=e11]: overlay component
+    - paragraph [ref=e12]: Các overlay trên nền màn hình chính. Render trên backdrop mờ (rgba), đóng bằng ✕ / Esc / click nền.
+    - generic [ref=e13]: ① Product Quick-Add · Modal (nhấn thẻ sản phẩm ở menu)
+    - generic [ref=e14]:
+      - generic [ref=e15]: MODAL
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - generic [ref=e20]: ✕ image
+            - generic [ref=e21]:
+              - heading "Pepperoni Feast" [level=3] [ref=e22]
+              - generic [ref=e23]: 🌶 Cay · ⭐ 4.8
+          - generic [ref=e24]: ✕
+        - generic [ref=e25]:
+          - generic [ref=e26]: Cỡ
+          - generic [ref=e27]:
+            - generic [ref=e28]: S · 99k
+            - generic [ref=e29]: M · 159k
+            - generic [ref=e30]: L · 219k
+        - generic [ref=e31]:
+          - generic [ref=e32]: Đế
+          - generic [ref=e33]:
+            - generic [ref=e34]: Mỏng
+            - generic [ref=e35]: Dày +20k
+            - generic [ref=e36]: Cheese +35k
+        - generic [ref=e37]:
+          - generic [ref=e38]: Topping thêm
+          - generic [ref=e39]:
+            - generic [ref=e41]:
+              - generic [ref=e42]: Extra Cheese
+              - generic [ref=e43]: +15k ✓
+            - generic [ref=e45]:
+              - generic [ref=e46]: Pepperoni
+              - generic [ref=e47]: +20k
+            - generic [ref=e49]:
+              - generic [ref=e50]: Nấm
+              - generic [ref=e51]: +12k
+            - generic [ref=e53]:
+              - generic [ref=e54]: Ớt xanh
+              - generic [ref=e55]: +10k
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]: −
+            - generic [ref=e59]: "1"
+            - generic [ref=e60]: +
+          - generic [ref=e61]: 🛒 Thêm vào giỏ · 174.000đ
+    - generic [ref=e62]: ② Cart · Drawer (trượt từ phải — click 🛒)
+    - generic [ref=e63]:
+      - generic [ref=e64]: DRAWER ›
+      - generic [ref=e66]:
+        - generic [ref=e67]:
+          - heading "Giỏ hàng (3)" [level=3] [ref=e68]
+          - generic [ref=e69]: ✕
+        - generic [ref=e70]:
+          - generic [ref=e71]: ✕ image
+          - generic [ref=e72]:
+            - generic [ref=e73]: Pepperoni (M) ×2
+            - generic [ref=e74]: + Cheese · Ớt
+          - generic [ref=e75]: 378k
+        - generic [ref=e76]:
+          - generic [ref=e77]: ✕ image
+          - generic [ref=e78]:
+            - generic [ref=e79]: Combo Gia Đình
+            - generic [ref=e80]: −30%
+          - generic [ref=e81]: 455k
+        - generic [ref=e82]:
+          - generic [ref=e83]: ✕ image
+          - generic [ref=e84]: Coca-Cola ×2
+          - generic [ref=e86]: 30k
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - generic [ref=e89]: Tạm tính
+            - generic [ref=e90]: 863.000đ
+          - generic [ref=e91]:
+            - generic [ref=e92]: Giảm + phí + VAT
+            - generic [ref=e93]: −124.600đ
+          - generic [ref=e94]:
+            - generic [ref=e95]: Tổng
+            - generic [ref=e96]: 738.400đ
+          - link "Xem giỏ đầy đủ" [ref=e97]:
+            - /url: 03-cart.html
+          - link "Thanh toán ›" [ref=e98]:
+            - /url: 04-checkout.html
+    - generic [ref=e99]: ③ Add/Edit Address · Modal (checkout delivery)
+    - generic [ref=e100]:
+      - generic [ref=e101]: MODAL
+      - generic [ref=e103]:
+        - generic [ref=e104]:
+          - heading "Địa chỉ giao hàng" [level=3] [ref=e105]
+          - generic [ref=e106]: ✕
+        - generic [ref=e107]:
+          - generic [ref=e108]: 🏠 Nhà
+          - generic [ref=e109]: 🏢 Công ty
+          - generic [ref=e110]: Khác
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - generic [ref=e113]: Họ tên
+            - generic [ref=e114]: Nguyễn Văn An
+          - generic [ref=e115]:
+            - generic [ref=e116]: SĐT
+            - generic [ref=e117]: 0901 234 567
+        - generic [ref=e118]:
+          - generic [ref=e119]: Địa chỉ
+          - generic [ref=e120]: 123 Nguyễn Huệ
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - generic [ref=e123]: Phường
+            - generic [ref=e124]: Bến Nghé
+          - generic [ref=e125]:
+            - generic [ref=e126]: Quận
+            - generic [ref=e127]: Quận 1
+          - generic [ref=e128]:
+            - generic [ref=e129]: TP
+            - generic [ref=e130]: TP.HCM
+        - generic [ref=e131]:
+          - generic [ref=e132]: Đặt làm mặc định
+          - generic [ref=e133]: ● Bật
+        - generic [ref=e134]:
+          - generic [ref=e135]: Hủy
+          - generic [ref=e136]: Lưu địa chỉ
+    - generic [ref=e137]: ④ Order Success · Modal (sau khi đặt đơn)
+    - generic [ref=e138]:
+      - generic [ref=e139]: MODAL
+      - generic [ref=e141]:
+        - generic [ref=e142]: ✓
+        - heading "Đặt đơn thành công!" [level=3] [ref=e143]
+        - generic [ref=e144]: Cảm ơn bạn — đơn đang được chuẩn bị.
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - generic [ref=e147]: Mã đơn
+            - generic [ref=e148]: "#PF-20451"
+          - generic [ref=e149]:
+            - generic [ref=e150]: Kênh
+            - generic [ref=e151]: 🛵 Giao tận nơi
+          - generic [ref=e152]:
+            - generic [ref=e153]: Dự kiến
+            - generic [ref=e154]: 25–35 phút
+          - generic [ref=e155]:
+            - generic [ref=e156]: Tổng
+            - generic [ref=e157]: 738.400đ
+        - link "Theo dõi đơn ›" [ref=e158]:
+          - /url: 05-order-tracking.html
+        - link "Về trang chủ" [ref=e159]:
+          - /url: 01-menu.html
+    - generic [ref=e160]: ⑤ Cancel Order · AlertDialog (destructive — policy hoàn tiền)
+    - generic [ref=e161]:
+      - generic [ref=e162]: ALERT
+      - generic [ref=e164]:
+        - generic [ref=e165]: "!"
+        - 'heading "Hủy đơn #PF-20451?" [level=3] [ref=e166]'
+        - generic [ref=e167]: Đơn đang "Đang làm" → hoàn 50%. Sau "Sẵn sàng" không hủy được qua app.
+        - generic [ref=e168]:
+          - generic [ref=e169]: Lý do hủy
+          - generic [ref=e170]: Đổi ý / đặt nhầm…
+        - generic [ref=e171]:
+          - generic [ref=e172]: Không
+          - generic [ref=e173]: Hủy đơn
+    - generic [ref=e174]:
+      - text: "Annotation: tất cả overlay dùng shadcn"
+      - code [ref=e175]: Dialog
+      - text: (modal),
+      - code [ref=e176]: Sheet
+      - text: (drawer),
+      - code [ref=e177]: AlertDialog
+      - text: (confirm). Backdrop tối mờ, đóng bằng Esc/✕/click nền. Dialog có hủy =
+      - code [ref=e178]: AlertDialog
+      - text: + policy hoàn tiền theo giai đoạn (state machine). Cart drawer là client state (Zustand).

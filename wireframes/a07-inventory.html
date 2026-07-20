@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory — Admin Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="admin" data-screen="a07-inventory">
+  <div id="admin-content">
+
+    <div class="grid g-4">
+      <div class="box kpi"><div class="l">Tổng mặt hàng</div><div class="v">86</div></div>
+      <div class="box kpi"><div class="l">Sắp hết</div><div class="v" style="color:var(--wf-warn)">9</div></div>
+      <div class="box kpi"><div class="l">Hết hàng</div><div class="v" style="color:var(--wf-bad)">3</div></div>
+      <div class="box kpi"><div class="l">Giá trị tồn</div><div class="v">128M</div></div>
+    </div>
+
+    <div class="box row between center wrap mt-l" style="padding:8px 14px;">
+      <div class="row center" style="gap:8px;">
+        <span class="muted small">Chi nhánh:</span>
+        <div class="seg"><div class="opt on">Lê Lợi (HCM)</div><div class="opt">Hoàn Kiếm</div><div class="opt">Đà Nẵng</div></div>
+      </div>
+      <div class="row" style="gap:8px;">
+        <div class="input">🔍 Tìm nguyên liệu / SKU</div>
+        <div class="btn">+ Nhập kho</div>
+      </div>
+    </div>
+
+    <div class="box mt-m">
+      <table class="table">
+        <thead>
+          <tr><th>Nguyên liệu / hàng</th><th>Loại</th><th>Tồn</th><th>Đơn vị</th><th>Tối thiểu</th><th>Trạng thái</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:24px;min-height:24px;border-radius:4px;"></div><b class="small">Phô mai Mozzarella</b></div></td>
+            <td class="small muted">Nguyên liệu</td>
+            <td class="bold small" style="color:var(--wf-bad)">4</td>
+            <td class="small">kg</td>
+            <td class="small">20</td>
+            <td><span class="tag bad sm">Sắp hết</span></td>
+            <td><span class="tag sm">Nhập ›</span></td>
+          </tr>
+          <tr>
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:24px;min-height:24px;border-radius:4px;"></div><b class="small">Pepperoni</b></div></td>
+            <td class="small muted">Nguyên liệu</td>
+            <td class="bold small" style="color:var(--wf-bad)">0</td>
+            <td class="small">kg</td>
+            <td class="small">10</td>
+            <td><span class="tag bad sm">Hết</span></td>
+            <td><span class="tag sm">Nhập ›</span></td>
+          </tr>
+          <tr>
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:24px;min-height:24px;border-radius:4px;"></div><b class="small">Đế pizza L (frozen)</b></div></td>
+            <td class="small muted">Bán thành phẩm</td>
+            <td class="bold small" style="color:var(--wf-warn)">8</td>
+            <td class="small">cái</td>
+            <td class="small">30</td>
+            <td><span class="tag warn sm">Thấp</span></td>
+            <td><span class="tag sm">Nhập ›</span></td>
+          </tr>
+          <tr>
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:24px;min-height:24px;border-radius:4px;"></div><b class="small">Coca-Cola (lon)</b></div></td>
+            <td class="small muted">Hàng hóa</td>
+            <td class="bold small">120</td>
+            <td class="small">lon</td>
+            <td class="small">48</td>
+            <td><span class="tag good sm">Đủ</span></td>
+            <td><span class="tag sm">Nhập ›</span></td>
+          </tr>
+          <tr>
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:24px;min-height:24px;border-radius:4px;"></div><b class="small">Bột mì</b></div></td>
+            <td class="small muted">Nguyên liệu</td>
+            <td class="bold small">62</td>
+            <td class="small">kg</td>
+            <td class="small">25</td>
+            <td><span class="tag good sm">Đủ</span></td>
+            <td><span class="tag sm">Nhập ›</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note mt-m"><b>Annotation:</b> tồn kho <b>theo chi nhánh</b>. Khi tạo đơn → tự trừ tồn (FIFO). Hết nguyên liệu chính → sản phẩm liên quan tự <b>ẩn available</b> ở storefront. Cảnh báo đẩy lên Dashboard.</div>
+  </div>
+
+  <script src="chrome.js"></script>
+  <script src="admin-shell.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu / Home — Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="storefront" data-screen="01-menu">
+
+  <!-- ===== Storefront header ===== -->
+  <header class="store-header">
+    <div class="inner">
+      <div class="logo">🍕 PizzaForge</div>
+      <div class="search"><span>🔍</span>&nbsp; Tìm pizza, món ăn kèm, combo…</div>
+      <div class="ico-btn">👤</div>
+      <div class="ico-btn">🛒<span class="cart-badge">3</span></div>
+    </div>
+  </header>
+  <nav class="catbar">
+    <div class="inner">
+      <a class="active">Pizza</a><a>Sides</a><a>Drinks</a><a>Desserts</a><a>Combos</a><a>🔥 Deals</a>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <!-- Branch / delivery context strip -->
+    <div class="box row between center wrap" style="padding:10px 14px;">
+      <div>📍 Giao đến: <b>Quận 1, HCM</b> · dự kiến <b>25–35 phút</b> &nbsp;<span class="tag sm">đổi ›</span></div>
+      <div class="row center"><span class="muted small">Chi nhánh gần nhất:</span> <b> PizzaForge Lê Lợi</b></div>
+    </div>
+
+    <!-- Hero promo -->
+    <div class="hero mt-m">
+      <div class="box flat" style="padding:0; position:relative; overflow:hidden;">
+        <div class="ph-img tall" style="border-radius:0; border:none;"></div>
+        <div style="position:absolute; left:22px; bottom:18px; right:22px;">
+          <span class="tag accent">Deal hôm nay</span>
+          <div style="font-size:22px; font-weight:800; margin-top:6px;">Combo Gia Đình — giảm 30%</div>
+          <div class="muted small">2 pizza cỡ lớn + 4 drink + dessert</div>
+          <div class="btn primary mt-s">Đặt ngay</div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="box flat"><div class="ph-img" style="min-height:70px;"></div><div class="bold mt-s">Miễn phí ship</div><div class="muted small">đơn từ 250k</div></div>
+        <div class="box flat"><div class="ph-img" style="min-height:70px;"></div><div class="bold mt-s">Tích điểm ×2</div><div class="muted small">thứ 2–thứ 4</div></div>
+      </div>
+    </div>
+
+    <!-- Filter / sort bar -->
+    <div class="box row between center wrap mt-m">
+      <div class="row wrap">
+        <span class="tag accent">Tất cả</span>
+        <span class="tag">🌱 Chay</span>
+        <span class="tag">🌶 Cay</span>
+        <span class="tag">✨ Mới</span>
+        <span class="tag">⭐ Bán chạy</span>
+      </div>
+      <div class="row center">
+        <span class="muted small">Sắp xếp:</span>
+        <div class="seg"><div class="opt on">Phổ biến</div><div class="opt">Giá</div><div class="opt">Đánh giá</div></div>
+      </div>
+    </div>
+
+    <!-- Product grid -->
+    <div class="h-sec mt-l">
+      <h2>Pizza</h2><span class="sub">12 món · đang hiển thị 8</span>
+    </div>
+    <div class="grid g-auto">
+      <!-- card -->
+      <div class="box pcard">
+        <div class="ph-img square"></div>
+        <div class="body">
+          <div class="bold">Margherita Classic</div>
+          <div class="line w-90"></div><div class="line w-50"></div>
+          <div class="price"><span class="bold">99.000đ</span><span class="tag sm">+ Thêm</span></div>
+        </div>
+      </div>
+      <div class="box pcard">
+        <div class="ph-img square"></div>
+        <div class="body">
+          <div class="row between"><div class="bold">Pepperoni Feast</div><span class="tag warn">🌶</span></div>
+          <div class="line w-90"></div><div class="line w-70"></div>
+          <div class="price"><span class="bold">159.000đ</span><span class="tag sm">+ Thêm</span></div>
+        </div>
+      </div>
+      <div class="box pcard">
+        <div class="ph-img square"></div>
+        <div class="body">
+          <div class="row between"><div class="bold">Veggie Garden</div><span class="tag good">🌱 Chay</span></div>
+          <div class="line w-90"></div><div class="line w-60"></div>
+          <div class="price"><span class="bold">129.000đ</span><span class="tag sm">+ Thêm</span></div>
+        </div>
+      </div>
+      <div class="box pcard">
+        <div class="ph-img square"></div>
+        <div class="body">
+          <div class="row between"><div class="bold">BBQ Chicken</div><span class="tag accent">✨ Mới</span></div>
+          <div class="line w-90"></div><div class="line w-70"></div>
+          <div class="price"><span class="bold">169.000đ</span><span class="tag sm">+ Thêm</span></div>
+        </div>
+      </div>
+      <div class="box pcard">
+        <div class="ph-img square"></div>
+        <div class="body">
+          <div class="bold">Hawaiian</div>
+          <div class="line w-90"></div><div class="line w-50"></div>
+          <div class="price"><span class="bold">139.000đ</span><span class="tag sm">+ Thêm</span></div>
+        </div>
+      </div>
+      <div class="box pcard">
+        <div class="ph-img square"></div>
+        <div class="body">
+          <div class="row between"><div class="bold">Seafood Deluxe</div><span class="tag">⭐</span></div>
+          <div class="line w-90"></div><div class="line w-80"></div>
+          <div class="price"><span class="bold">199.000đ</span><span class="tag sm">+ Thêm</span></div>
+        </div>
+      </div>
+      <div class="box pcard">
+        <div class="ph-img square"></div>
+        <div class="body">
+          <div class="bold">Quattro Formaggi</div>
+          <div class="line w-90"></div><div class="line w-60"></div>
+          <div class="price"><span class="bold">179.000đ</span><span class="tag sm">+ Thêm</span></div>
+        </div>
+      </div>
+      <div class="box pcard">
+        <div class="ph-img square"></div>
+        <div class="body">
+          <div class="row between"><div class="bold">Spicy Beef</div><span class="tag warn">🌶</span></div>
+          <div class="line w-90"></div><div class="line w-70"></div>
+          <div class="price"><span class="bold">159.000đ</span><span class="tag sm">+ Thêm</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note mt-l"><b>Annotation:</b> nhấn vào thẻ sản phẩm → mở <b>Product Detail</b> (02). Menu lọc theo <b>chi nhánh</b> (availability &amp; giá có thể khác theo chi nhánh). Số trên giỏ hàng (🛒 3) là <b>client state</b> trong Zustand.</div>
+  </div>
+
+  <footer class="store-footer">
+    <div class="inner">
+      <div>🍕 PizzaForge — Wireframe storefront</div>
+      <div>Giới thiệu · Điều khoản · Hỗ trợ · Theo dõi đơn</div>
+    </div>
+  </footer>
+  <script src="chrome.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Admin Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .toggle { width:38px; height:22px; border-radius:999px; background:var(--wf-fill); border:1px solid var(--wf-line); position:relative; }
+    .toggle::after { content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; border:1px solid var(--wf-line); }
+    .toggle.on { background:var(--wf-accent); border-color:var(--wf-accent); }
+    .toggle.on::after { left:18px; border-color:var(--wf-accent); }
+  </style>
+</head>
+<body data-group="admin" data-screen="a10-settings">
+  <div id="admin-content">
+
+    <!-- Section tabs -->
+    <div class="box" style="padding:0;">
+      <div class="catbar" style="border:none;">
+        <div class="inner">
+          <a class="active">Thông tin</a><a>Thuế &amp; phí</a><a>Thanh toán</a><a>Branding</a><a>Ngôn ngữ</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-m" style="align-items:flex-start;">
+      <!-- Form -->
+      <div class="col" style="flex:1.6;">
+        <div class="box stack">
+          <div class="h-sec" style="margin:0;"><b>Thông tin cửa hàng</b></div>
+          <div class="grid g-2">
+            <div class="field"><label>Tên thương hiệu</label><div class="input">PizzaForge</div></div>
+            <div class="field"><label>Hotline</label><div class="input">1900 1234</div></div>
+          </div>
+          <div class="field"><label>Email hỗ trợ</label><div class="input">support@pizzaforge.vn</div></div>
+          <div class="field"><label>Logo</label>
+            <div class="row center" style="gap:10px;"><div class="ph-img" style="width:54px;min-height:54px;border-radius:8px;"></div><div class="btn">Tải lên</div><span class="muted tiny">PNG/SVG · ≤ 1MB</span></div>
+          </div>
+        </div>
+
+        <div class="box stack mt-m">
+          <div class="h-sec" style="margin:0;"><b>Thuế &amp; phí</b></div>
+          <div class="grid g-2">
+            <div class="field"><label>VAT (%)</label><div class="input">8</div></div>
+            <div class="field"><label>Áp VAT cho phí ship</label><div class="input">Không</div></div>
+          </div>
+          <div class="grid g-2">
+            <div class="field"><label>Phí dịch vụ (dine-in)</label><div class="input">5%</div></div>
+            <div class="field"><label>Ngưỡng miễn phí ship mặc định</label><div class="input">250.000đ</div></div>
+          </div>
+        </div>
+
+        <div class="box stack mt-m">
+          <div class="h-sec" style="margin:0;"><b>Phương thức thanh toán</b></div>
+          <div class="drow" style="grid-template-columns:1fr auto;"><div class="small"><b>COD</b> · thanh toán khi nhận</div><div class="toggle on"></div></div>
+          <div class="drow" style="grid-template-columns:1fr auto;"><div class="small"><b>Momo</b> · ví điện tử</div><div class="toggle on"></div></div>
+          <div class="drow" style="grid-template-columns:1fr auto;"><div class="small"><b>Thẻ Visa/Mastercard</b></div><div class="toggle on"></div></div>
+          <div class="drow" style="grid-template-columns:1fr auto;"><div class="small"><b>ZaloPay</b></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="row right mt-s"><div class="btn ghost">Hủy</div><div class="btn primary">Lưu thay đổi</div></div>
+      </div>
+
+      <!-- Side: i18n + danger zone -->
+      <div class="col" style="flex:1;">
+        <div class="box stack">
+          <div class="h-sec" style="margin:0;"><b>Ngôn ngữ</b></div>
+          <div class="drow" style="grid-template-columns:1fr auto;"><div class="small">🇻🇳 Tiếng Việt</div><span class="tag good sm">Mặc định</span></div>
+          <div class="drow" style="grid-template-columns:1fr auto;"><div class="small">🇬🇧 English</div><div class="toggle on"></div></div>
+        </div>
+        <div class="box stack mt-m">
+          <div class="h-sec" style="margin:0;"><b>Mock data</b></div>
+          <div class="muted small">Toàn bộ dữ liệu đang chạy từ MSW + localStorage.</div>
+          <div class="row" style="gap:8px;"><div class="btn">↺ Reset seed</div><div class="btn" style="color:var(--wf-bad); border-color:#f4c2c2;">Xóa localStorage</div></div>
+        </div>
+        <div class="note mt-m"><b>Annotation:</b> các cấu hình (VAT, ngưỡng free ship, payment bật/tắt) là <b>đầu vào</b> cho pricing engine &amp; checkout. Khi cắm API thật, đây gọi <code>PATCH /api/settings</code>.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="chrome.js"></script>
+  <script src="admin-shell.js"></script>
+</body>
+</html>

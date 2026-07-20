@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customers — Admin Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="admin" data-screen="a05-customers">
+  <div id="admin-content">
+
+    <div class="grid g-4">
+      <div class="box kpi"><div class="l">Tổng khách hàng</div><div class="v">4.820</div></div>
+      <div class="box kpi"><div class="l">Khách quay lại</div><div class="v">38%</div></div>
+      <div class="box kpi"><div class="l">Hạng Vàng/Bạch kim</div><div class="v">612</div></div>
+      <div class="box kpi"><div class="l">Blacklist</div><div class="v">7</div></div>
+    </div>
+
+    <div class="box row between center wrap mt-l" style="padding:8px 14px;">
+      <div class="row wrap" style="gap:6px;">
+        <span class="tag accent">Tất cả</span>
+        <span class="tag">⭐ Vàng</span>
+        <span class="tag">💎 Bạch kim</span>
+        <span class="tag">Mới</span>
+        <span class="tag bad">⛔ Blacklist</span>
+      </div>
+      <div class="input">🔍 Tên / SĐT / email</div>
+    </div>
+
+    <div class="box mt-m">
+      <table class="table">
+        <thead>
+          <tr><th>Khách</th><th>SĐT</th><th>Đơn</th><th>Tổng chi</th><th>Hạng</th><th>Đơn gần nhất</th><th>Trạng thái</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:28px;min-height:28px;border-radius:50%;"></div><div><div class="bold small">Nguyễn Văn An</div><div class="muted tiny">an@mail.com</div></div></div></td>
+            <td class="small">0901 234 567</td>
+            <td class="small">42</td>
+            <td class="bold small">14.2M</td>
+            <td><span class="tag accent sm">⭐ Vàng</span></td>
+            <td class="small">Hôm nay</td>
+            <td><span class="tag good sm">● Active</span></td>
+            <td><span class="tag sm">Xem ›</span></td>
+          </tr>
+          <tr>
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:28px;min-height:28px;border-radius:50%;"></div><div><div class="bold small">Trần Thị Bình</div><div class="muted tiny">binh@mail.com</div></div></div></td>
+            <td class="small">0902 111 222</td>
+            <td class="small">88</td>
+            <td class="bold small">31.5M</td>
+            <td><span class="tag sm">💎 Bạch kim</span></td>
+            <td class="small">17/07</td>
+            <td><span class="tag good sm">● Active</span></td>
+            <td><span class="tag sm">Xem ›</span></td>
+          </tr>
+          <tr>
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:28px;min-height:28px;border-radius:50%;"></div><div><div class="bold small">Lê Hoàng Châu</div></div></div></td>
+            <td class="small">0903 333 444</td>
+            <td class="small">1</td>
+            <td class="bold small">289k</td>
+            <td><span class="tag sm">Mới</span></td>
+            <td class="small">02/07</td>
+            <td><span class="tag good sm">● Active</span></td>
+            <td><span class="tag sm">Xem ›</span></td>
+          </tr>
+          <tr style="opacity:.7;">
+            <td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:28px;min-height:28px;border-radius:50%;"></div><div><div class="bold small">Phạm Đình Dũng</div></div></div></td>
+            <td class="small">0904 555 666</td>
+            <td class="small">3</td>
+            <td class="bold small">0đ</td>
+            <td><span class="muted small">—</span></td>
+            <td class="small">21/06</td>
+            <td><span class="tag bad sm">⛔ Blacklist</span></td>
+            <td><span class="tag sm">Mở khóa</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note mt-m"><b>Annotation:</b> phân khúc tự động theo tier/frequency/RFM. Hạng loyalty tính từ điểm (xem <b>Loyalty</b> domain). Blacklist chặn đặt đơn mới (check ở bước tạo đơn).</div>
+  </div>
+
+  <script src="chrome.js"></script>
+  <script src="admin-shell.js"></script>
+</body>
+</html>

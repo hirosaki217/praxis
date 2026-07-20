@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Storefront Popups — Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="popups" data-screen="07-popups">
+
+  <div class="page">
+    <div class="h-sec"><h2>Storefront — Popups &amp; Dialogs</h2><span class="sub">overlay component</span></div>
+    <p class="muted small">Các overlay trên nền màn hình chính. Render trên backdrop mờ (rgba), đóng bằng ✕ / Esc / click nền.</p>
+
+    <!-- ① Product Quick-Add -->
+    <div class="eyebrow mt-l">① Product Quick-Add · Modal <span class="muted tiny">(nhấn thẻ sản phẩm ở menu)</span></div>
+    <div class="stage">
+      <span class="label">MODAL</span>
+      <div class="backdrop"></div>
+      <div class="modal">
+        <div class="modal-h">
+          <div class="row center" style="gap:12px;">
+            <div class="ph-img" style="width:56px;min-height:56px;border-radius:8px;"></div>
+            <div><h3>Pepperoni Feast</h3><div class="muted tiny">🌶 Cay · ⭐ 4.8</div></div>
+          </div>
+          <span class="x">✕</span>
+        </div>
+        <div class="field"><label>Cỡ</label>
+          <div class="seg"><div class="opt">S · 99k</div><div class="opt on">M · 159k</div><div class="opt">L · 219k</div></div>
+        </div>
+        <div class="field mt-s"><label>Đế</label>
+          <div class="seg"><div class="opt on">Mỏng</div><div class="opt">Dày +20k</div><div class="opt">Cheese +35k</div></div>
+        </div>
+        <div class="field mt-s"><label>Topping thêm</label>
+          <div class="grid g-2">
+            <div class="box fill" style="padding:8px;border-color:var(--wf-accent);background:var(--wf-accent-soft);"><div class="row between center"><span class="small bold">Extra Cheese</span><span class="tiny">+15k ✓</span></div></div>
+            <div class="box fill" style="padding:8px;"><div class="row between center"><span class="small">Pepperoni</span><span class="muted tiny">+20k</span></div></div>
+            <div class="box fill" style="padding:8px;"><div class="row between center"><span class="small">Nấm</span><span class="muted tiny">+12k</span></div></div>
+            <div class="box fill" style="padding:8px;"><div class="row between center"><span class="small">Ớt xanh</span><span class="muted tiny">+10k</span></div></div>
+          </div>
+        </div>
+        <div class="row between center mt-s" style="border-top:1px dashed var(--wf-line);padding-top:12px;">
+          <div class="seg"><div class="opt">−</div><div class="opt on">1</div><div class="opt">+</div></div>
+          <div class="btn primary">🛒 Thêm vào giỏ · 174.000đ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② Cart Drawer -->
+    <div class="eyebrow mt-l">② Cart · Drawer <span class="muted tiny">(trượt từ phải — click 🛒)</span></div>
+    <div class="stage tall">
+      <span class="label">DRAWER ›</span>
+      <div class="backdrop"></div>
+      <div class="drawer">
+        <div class="modal-h"><h3>Giỏ hàng (3)</h3><span class="x">✕</span></div>
+        <div class="drow" style="grid-template-columns:40px 1fr auto;">
+          <div class="ph-img" style="min-height:40px;border-radius:6px;"></div>
+          <div><div class="bold small">Pepperoni (M) ×2</div><div class="muted tiny">+ Cheese · Ớt</div></div>
+          <div class="bold small">378k</div>
+        </div>
+        <div class="drow" style="grid-template-columns:40px 1fr auto;">
+          <div class="ph-img" style="min-height:40px;border-radius:6px;"></div>
+          <div><div class="bold small">Combo Gia Đình</div><div class="muted tiny">−30%</div></div>
+          <div class="bold small">455k</div>
+        </div>
+        <div class="drow" style="grid-template-columns:40px 1fr auto;">
+          <div class="ph-img" style="min-height:40px;border-radius:6px;"></div>
+          <div><div class="bold small">Coca-Cola ×2</div></div>
+          <div class="bold small">30k</div>
+        </div>
+        <div class="drawer-foot">
+          <div class="kv"><span class="k">Tạm tính</span><span class="v">863.000đ</span></div>
+          <div class="kv"><span class="k">Giảm + phí + VAT</span><span class="v">−124.600đ</span></div>
+          <div class="kv total" style="border:none;"><span class="k">Tổng</span><span class="v">738.400đ</span></div>
+          <a href="03-cart.html" class="btn ghost block sm mt-s">Xem giỏ đầy đủ</a>
+          <a href="04-checkout.html" class="btn primary block mt-s">Thanh toán ›</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ Address add/edit -->
+    <div class="eyebrow mt-l">③ Add/Edit Address · Modal <span class="muted tiny">(checkout delivery)</span></div>
+    <div class="stage">
+      <span class="label">MODAL</span>
+      <div class="backdrop"></div>
+      <div class="modal">
+        <div class="modal-h"><h3>Địa chỉ giao hàng</h3><span class="x">✕</span></div>
+        <div class="seg" style="margin-bottom:10px;"><div class="opt on">🏠 Nhà</div><div class="opt">🏢 Công ty</div><div class="opt">Khác</div></div>
+        <div class="grid g-2">
+          <div class="field"><label>Họ tên</label><div class="input">Nguyễn Văn An</div></div>
+          <div class="field"><label>SĐT</label><div class="input">0901 234 567</div></div>
+        </div>
+        <div class="field mt-s"><label>Địa chỉ</label><div class="input">123 Nguyễn Huệ</div></div>
+        <div class="grid g-3 mt-s">
+          <div class="field"><label>Phường</label><div class="input">Bến Nghé</div></div>
+          <div class="field"><label>Quận</label><div class="input">Quận 1</div></div>
+          <div class="field"><label>TP</label><div class="input">TP.HCM</div></div>
+        </div>
+        <div class="row between center mt-s"><span class="small">Đặt làm mặc định</span><span class="tag good sm">● Bật</span></div>
+        <div class="modal-foot"><div class="btn ghost">Hủy</div><div class="btn primary">Lưu địa chỉ</div></div>
+      </div>
+    </div>
+
+    <!-- ④ Order Success -->
+    <div class="eyebrow mt-l">④ Order Success · Modal <span class="muted tiny">(sau khi đặt đơn)</span></div>
+    <div class="stage">
+      <span class="label">MODAL</span>
+      <div class="backdrop"></div>
+      <div class="modal center" style="text-align:center;">
+        <div class="check-circle">✓</div>
+        <h3 style="margin:4px 0;">Đặt đơn thành công!</h3>
+        <div class="muted small">Cảm ơn bạn — đơn đang được chuẩn bị.</div>
+        <div class="box flat mt-s" style="text-align:left;">
+          <div class="kv"><span class="k">Mã đơn</span><span class="v font-mono">#PF-20451</span></div>
+          <div class="kv"><span class="k">Kênh</span><span class="v">🛵 Giao tận nơi</span></div>
+          <div class="kv"><span class="k">Dự kiến</span><span class="v">25–35 phút</span></div>
+          <div class="kv total" style="border:none;"><span class="k">Tổng</span><span class="v">738.400đ</span></div>
+        </div>
+        <a href="05-order-tracking.html" class="btn primary block mt-s">Theo dõi đơn ›</a>
+        <a href="01-menu.html" class="btn ghost block sm mt-s">Về trang chủ</a>
+      </div>
+    </div>
+
+    <!-- ⑤ Cancel confirm (AlertDialog) -->
+    <div class="eyebrow mt-l">⑤ Cancel Order · AlertDialog <span class="muted tiny">(destructive — policy hoàn tiền)</span></div>
+    <div class="stage">
+      <span class="label">ALERT</span>
+      <div class="backdrop"></div>
+      <div class="modal center" style="text-align:center;">
+        <div class="alert-icon">!</div>
+        <h3 style="margin:4px 0;">Hủy đơn #PF-20451?</h3>
+        <div class="muted small">Đơn đang "Đang làm" → hoàn <b>50%</b>. Sau "Sẵn sàng" không hủy được qua app.</div>
+        <div class="field mt-s" style="text-align:left;"><label>Lý do hủy</label><div class="input">Đổi ý / đặt nhầm…</div></div>
+        <div class="modal-foot" style="justify-content:center;">
+          <div class="btn ghost">Không</div>
+          <div class="btn" style="background:var(--wf-bad);color:#fff;border-color:var(--wf-bad);">Hủy đơn</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note mt-l"><b>Annotation:</b> tất cả overlay dùng shadcn <code>Dialog</code> (modal), <code>Sheet</code> (drawer), <code>AlertDialog</code> (confirm). Backdrop tối mờ, đóng bằng Esc/✕/click nền. Dialog có hủy = <code>AlertDialog</code> + policy hoàn tiền theo giai đoạn (state machine). Cart drawer là client state (Zustand).</div>
+  </div>
+
+  <script src="chrome.js"></script>
+</body>
+</html>

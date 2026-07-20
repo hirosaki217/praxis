@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Pizza — Wireframes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hero-card { background: var(--wf-card); border:1px solid var(--wf-line); border-radius:14px; padding:28px; }
+    .hero-card h1 { margin:0 0 6px; font-size:26px; }
+    .screen-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+    .tile { display:block; text-decoration:none; color:inherit; background:var(--wf-card); border:1px solid var(--wf-line); border-radius:10px; padding:14px; }
+    .tile:hover { border-color:var(--wf-accent); box-shadow:0 4px 14px rgba(99,102,241,.08); }
+    .tile .num { font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--wf-mute); }
+    .tile .t { font-weight:700; margin-top:4px; }
+    .tile .g { font-size:11.5px; color:var(--wf-mute); margin-top:6px; }
+    .grp-h { margin:26px 0 12px; display:flex; align-items:baseline; gap:10px; }
+    .grp-h h2 { margin:0; font-size:18px; }
+    .coming { opacity:.5; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero-card">
+      <span class="eyebrow">Wireframe · Lo-fi</span>
+      <h1>Order Pizza — Wireframes</h1>
+      <p class="muted">Bản phác layout grayscale cho storefront &amp; admin. Click vào từng ô để xem màn hình; dùng thanh điều hướng trên cùng để chuyển tiếp/lùi.</p>
+      <div class="row mt-s">
+        <span class="tag">React + Vite + TS</span>
+        <span class="tag">Tailwind + shadcn/ui</span>
+        <span class="tag">3 kênh: Delivery · Pickup · Dine-in</span>
+        <span class="tag accent">focus business logic + FE</span>
+      </div>
+    </div>
+
+    <div class="grp-h"><h2>Storefront</h2><span class="muted small">flow khách hàng</span></div>
+    <div class="screen-grid">
+      <a class="tile" href="01-menu.html"><div class="num">01</div><div class="t">Menu / Home</div><div class="g">hero · category · product grid</div></a>
+      <a class="tile" href="02-product-detail.html"><div class="num">02</div><div class="t">Product Detail</div><div class="g">size · crust · toppings · giá realtime</div></a>
+      <a class="tile" href="03-cart.html"><div class="num">03</div><div class="t">Cart</div><div class="g">line items · chọn kênh · voucher</div></a>
+      <a class="tile" href="04-checkout.html"><div class="num">04</div><div class="t">Checkout (3 kênh)</div><div class="g">Delivery · Pickup · Dine-in · payment</div></a>
+      <a class="tile" href="05-order-tracking.html"><div class="num">05</div><div class="t">Order Tracking</div><div class="g">stepper · ETA · map/driver</div></a>
+      <a class="tile" href="06-account.html"><div class="num">06</div><div class="t">Account</div><div class="g">order history · địa chỉ · loyalty</div></a>
+    </div>
+
+    <div class="grp-h"><h2>Admin Dashboard</h2><span class="muted small">vận hành</span></div>
+    <div class="screen-grid">
+      <a class="tile" href="a01-dashboard.html"><div class="num">A1</div><div class="t">Dashboard</div><div class="g">KPI · biểu đồ · top sản phẩm</div></a>
+      <a class="tile" href="a02-orders.html"><div class="num">A2</div><div class="t">Order Board</div><div class="g">Kanban theo trạng thái</div></a>
+      <a class="tile" href="a03-menu.html"><div class="num">A3</div><div class="t">Menu Mgmt</div><div class="g">CRUD sản phẩm / biến thể / combo</div></a>
+      <a class="tile" href="a04-promotions.html"><div class="num">A4</div><div class="t">Promotions</div><div class="g">voucher · lịch trình · giới hạn</div></a>
+      <a class="tile" href="a05-customers.html"><div class="num">A5</div><div class="t">Customers</div><div class="g">phân khúc · lịch sử · loyalty</div></a>
+      <a class="tile" href="a06-branches.html"><div class="num">A6</div><div class="t">Branches</div><div class="g">đa chi nhánh · zone giao hàng</div></a>
+      <a class="tile" href="a07-inventory.html"><div class="num">A7</div><div class="t">Inventory</div><div class="g">tồn kho · cảnh báo</div></a>
+      <a class="tile" href="a08-staff.html"><div class="num">A8</div><div class="t">Staff &amp; RBAC</div><div class="g">role · permission matrix</div></a>
+      <a class="tile" href="a09-reports.html"><div class="num">A9</div><div class="t">Reports</div><div class="g">doanh thu · hiệu suất · CSV</div></a>
+      <a class="tile" href="a10-settings.html"><div class="num">A10</div><div class="t">Settings</div><div class="g">thuế · payment · branding</div></a>
+    </div>
+
+    <div class="grp-h"><h2>Popups &amp; Dialogs</h2><span class="muted small">overlay component</span></div>
+    <div class="screen-grid">
+      <a class="tile" href="07-popups.html"><div class="num">P1</div><div class="t">Storefront Popups</div><div class="g">quick-add · cart drawer · address · success · cancel</div></a>
+      <a class="tile" href="a11-popups.html"><div class="num">P2</div><div class="t">Admin Popups</div><div class="g">order drawer · product/voucher editor · restock · confirm</div></a>
+    </div>
+
+    <div class="note mt-l"><b>Đọc wireframe:</b> ô xám chéo = ảnh placeholder · thanh xám = text · nút xanh = CTA chính · khung nét đứt xanh = ghi chú tương tác (annotation). Bản này tập trung <b>layout &amp; cấu trúc nghiệp vụ</b>, không phải visual design cuối.</div>
+  </div>
+  <script src="chrome.js"></script>
+</body>
+</html>

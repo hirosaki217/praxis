@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="storefront" data-screen="04-checkout">
+
+  <header class="store-header">
+    <div class="inner">
+      <div class="logo">🍕 PizzaForge</div>
+      <div class="search"><span>🔍</span>&nbsp; Tìm pizza, món ăn kèm, combo…</div>
+      <div class="ico-btn">👤</div>
+      <div class="ico-btn">🛒<span class="cart-badge">3</span></div>
+    </div>
+  </header>
+  <nav class="catbar">
+    <div class="inner"><a>Pizza</a><a>Sides</a><a>Drinks</a><a>Desserts</a><a>Combos</a><a>🔥 Deals</a></div>
+  </nav>
+
+  <div class="page">
+    <div class="h-sec"><h2>Thanh toán</h2><span class="sub">bước cuối — kiểm tra &amp; đặt đơn</span></div>
+
+    <!-- Channel switch (drives the fulfilment section) -->
+    <div class="box row center wrap" style="padding:10px 14px;">
+      <span class="eyebrow" style="margin-right:8px;">Kênh nhận</span>
+      <div class="seg" style="display:flex;">
+        <div class="opt on" style="flex:1;">🛵 Giao tận nơi</div>
+        <div class="opt" style="flex:1;">🏪 Tự đến lấy</div>
+        <div class="opt" style="flex:1;">🍽 Ăn tại quán</div>
+      </div>
+      <span class="muted small" style="margin-left:auto;">Đổi kênh → đổi form bên dưới + phí</span>
+    </div>
+
+    <div class="row mt-m" style="align-items:flex-start;">
+      <!-- Left: fulfilment + payment -->
+      <div class="col" style="flex:1.7;">
+
+        <!-- DELIVERY panel (active) -->
+        <div class="box stack">
+          <div class="row between center"><b>📍 Địa chỉ giao hàng</b><span class="tag sm">+ Thêm địa chỉ</span></div>
+          <div class="grid g-2">
+            <div class="field"><label>Họ tên</label><div class="input">Nguyễn Văn An</div></div>
+            <div class="field"><label>Số điện thoại</label><div class="input">0901 234 567</div></div>
+          </div>
+          <div class="field"><label>Địa chỉ</label><div class="input">123 Nguyễn Huệ, P.Bến Nghé</div></div>
+          <div class="grid g-3">
+            <div class="field"><label>Phường/Xã</label><div class="input">Bến Nghé</div></div>
+            <div class="field"><label>Quận/Huyện</label><div class="input">Quận 1</div></div>
+            <div class="field"><label>Thành phố</label><div class="input">TP.HCM</div></div>
+          </div>
+          <div class="field"><label>Khung giờ giao</label>
+            <div class="seg"><div class="opt on">Càng sớm càng tốt</div><div class="opt">11:30–12:00</div><div class="opt">12:00–12:30</div></div>
+          </div>
+          <div class="field"><label>Ghi chú cho shipper</label><div class="input">Gọi khi đến cổng, khu B…</div></div>
+        </div>
+
+        <!-- Mini previews: how Pickup & Dine-in panels differ -->
+        <div class="grid g-2 mt-m">
+          <div class="box flat">
+            <div class="eyebrow">Nếu chọn PICKUP</div>
+            <div class="field mt-s"><label>Chi nhánh lấy</label><div class="input">PizzaForge Lê Lợi</div></div>
+            <div class="field mt-s"><label>Khung giờ lấy</label><div class="input">11:45 — 12:00</div></div>
+            <div class="muted tiny mt-s">→ Không có phí ship, không cần địa chỉ.</div>
+          </div>
+          <div class="box flat">
+            <div class="eyebrow">Nếu chọn DINE-IN</div>
+            <div class="field mt-s"><label>Chi nhánh</label><div class="input">PizzaForge Lê Lợi</div></div>
+            <div class="field mt-s"><label>Bàn</label><div class="input">Bàn 12 (quét QR) ›</div></div>
+            <div class="muted tiny mt-s">→ Phục vụ tại bàn, thanh toán sau khi dùng.</div>
+          </div>
+        </div>
+
+        <!-- Payment -->
+        <div class="box stack mt-m">
+          <b>💳 Phương thức thanh toán</b>
+          <div class="grid g-3">
+            <div class="box fill" style="border-color:var(--wf-accent); background:var(--wf-accent-soft);">
+              <div class="row between center"><span class="bold">💵 COD</span><span class="small">✓</span></div>
+              <div class="muted tiny">Thanh toán khi nhận</div>
+            </div>
+            <div class="box fill"><div class="bold">📱 Momo</div><div class="muted tiny">Ví điện tử (mock)</div></div>
+            <div class="box fill"><div class="bold">💳 Thẻ Visa/MC</div><div class="muted tiny">Quẹt / nhập (mock)</div></div>
+          </div>
+          <div class="muted tiny">→ Mọi kênh thanh toán đều <b>mock</b>; flow thật làm ở giai đoạn tích hợp API.</div>
+        </div>
+      </div>
+
+      <!-- Right: summary + place order -->
+      <div class="col" style="flex:1;">
+        <div class="box" style="position:sticky; top:120px;">
+          <div class="h-sec" style="margin:0 0 10px;"><b>Đơn của bạn</b></div>
+          <div class="drow" style="grid-template-columns:1fr auto; padding:6px 0;">
+            <span class="small">Pepperoni Feast (M) ×2</span><span class="small bold">378.000đ</span></div>
+          <div class="drow" style="grid-template-columns:1fr auto; padding:6px 0;">
+            <span class="small">Combo Gia Đình ×1</span><span class="small bold">455.000đ</span></div>
+          <div class="drow" style="grid-template-columns:1fr auto; padding:6px 0;">
+            <span class="small">Coca-Cola ×2</span><span class="small bold">30.000đ</span></div>
+          <div style="border-top:1px dashed var(--wf-line); margin-top:6px; padding-top:8px;">
+            <div class="kv"><span class="k small">Giảm combo + VAT</span><span class="v small">−139.600đ</span></div>
+            <div class="kv"><span class="k small">Phí giao hàng</span><span class="v small">25.000đ</span></div>
+            <div class="kv"><span class="k small">Đổi điểm</span><span class="v small" style="color:var(--wf-good)">−10.000đ</span></div>
+          </div>
+          <div class="kv total"><span class="k">Tổng cộng</span><span class="v">738.400đ</span></div>
+
+          <div class="field mt-s"><label>Mã giảm giá</label><div class="input">PIZZA30 — đã áp</div></div>
+
+          <a href="05-order-tracking.html" class="btn primary block lg mt-s">✓ Đặt đơn · 738.400đ</a>
+          <div class="muted tiny center mt-s">Bằng việc đặt đơn, bạn đồng ý với điều khoản.</div>
+        </div>
+        <div class="note mt-m"><b>Annotation:</b> nút <b>Đặt đơn</b> gọi <code>POST /api/orders</code> (mock) → validate qua Zod → chạy pricing engine → lưu localStorage → <b>Order Tracking (05)</b>. Phần fulfilment đổi theo <b>3 kênh</b> nhờ chung một state (channel) trong form.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="store-footer"><div class="inner"><div>🍕 PizzaForge</div><div>Theo dõi đơn · Hỗ trợ · Điều khoản</div></div></footer>
+  <script src="chrome.js"></script>
+</body>
+</html>

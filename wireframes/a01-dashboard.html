@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Admin Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="admin" data-screen="a01-dashboard">
+  <div id="admin-content">
+
+    <!-- KPI tiles -->
+    <div class="grid g-4">
+      <div class="box kpi">
+        <div class="l">Doanh thu hôm nay</div>
+        <div class="v">12.480.000đ</div>
+        <div class="delta" style="color:var(--wf-good)">▲ 8% so với hôm qua</div>
+      </div>
+      <div class="box kpi">
+        <div class="l">Số đơn hôm nay</div>
+        <div class="v">186</div>
+        <div class="delta" style="color:var(--wf-good)">▲ 12%</div>
+      </div>
+      <div class="box kpi">
+        <div class="l">Giá trị trung bình (AOV)</div>
+        <div class="v">320.000đ</div>
+        <div class="delta" style="color:var(--wf-good)">▲ 3%</div>
+      </div>
+      <div class="box kpi">
+        <div class="l">Đơn đang xử lý</div>
+        <div class="v">24</div>
+        <div class="delta" style="color:var(--wf-warn)">5 đang chờ xác nhận</div>
+      </div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="row mt-l" style="align-items:stretch;">
+      <div class="col" style="flex:2;">
+        <div class="box">
+          <div class="h-sec" style="margin:0 0 6px;"><b>Doanh thu 7 ngày qua</b><span class="sub">đơn vị: triệu đồng</span></div>
+          <div class="bars">
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:48%"></div>
+            <div class="bar" style="height:82%"></div>
+            <div class="bar" style="height:65%"></div>
+            <div class="bar" style="height:90%"></div>
+            <div class="bar" style="height:100%; background:var(--wf-accent)"></div>
+          </div>
+          <div class="row between tiny muted" style="margin-top:6px;"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
+          <div class="row mt-s"><span class="tag accent">🛵 Giao 62%</span><span class="tag">🏪 Lấy 26%</span><span class="tag">🍽 Quán 12%</span></div>
+        </div>
+      </div>
+      <div class="col" style="flex:1;">
+        <div class="box">
+          <div class="h-sec" style="margin:0 0 8px;"><b>Top sản phẩm</b><span class="sub">7 ngày</span></div>
+          <div class="drow" style="grid-template-columns:28px 1fr auto; padding:6px 0;">
+            <div class="ph-img" style="min-height:28px;border-radius:4px;"></div><div class="small bold">Pepperoni Feast</div><div class="small muted">142</div></div>
+          <div class="drow" style="grid-template-columns:28px 1fr auto; padding:6px 0;">
+            <div class="ph-img" style="min-height:28px;border-radius:4px;"></div><div class="small bold">Combo Gia Đình</div><div class="small muted">98</div></div>
+          <div class="drow" style="grid-template-columns:28px 1fr auto; padding:6px 0;">
+            <div class="ph-img" style="min-height:28px;border-radius:4px;"></div><div class="small bold">Margherita</div><div class="small muted">76</div></div>
+          <div class="drow" style="grid-template-columns:28px 1fr auto; padding:6px 0;">
+            <div class="ph-img" style="min-height:28px;border-radius:4px;"></div><div class="small bold">BBQ Chicken</div><div class="small muted">61</div></div>
+          <div class="drow" style="grid-template-columns:28px 1fr auto; padding:6px 0;">
+            <div class="ph-img" style="min-height:28px;border-radius:4px;"></div><div class="small bold">Seafood Deluxe</div><div class="small muted">44</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent orders + low stock -->
+    <div class="row mt-l" style="align-items:stretch;">
+      <div class="col" style="flex:2;">
+        <div class="box">
+          <div class="h-sec" style="margin:0 0 6px;"><b>Đơn gần đây</b><a class="tag sm" href="a02-orders.html">Xem tất cả ›</a></div>
+          <table class="table">
+            <thead><tr><th>Mã</th><th>Khách</th><th>Kênh</th><th>Trạng thái</th><th>Tổng</th></tr></thead>
+            <tbody>
+              <tr><td class="bold">#PF-20453</td><td>Nguyễn V. An</td><td>🛵 Giao</td><td><span class="tag accent sm">Mới</span></td><td>738k</td></tr>
+              <tr><td class="bold">#PF-20452</td><td>Trần T. Bình</td><td>🍽 Quán</td><td><span class="tag warn sm">Đang làm</span></td><td>412k</td></tr>
+              <tr><td class="bold">#PF-20451</td><td>Lê H. Châu</td><td>🛵 Giao</td><td><span class="tag sm">Đang giao</span></td><td>560k</td></tr>
+              <tr><td class="bold">#PF-20450</td><td>Phạm Đ. Dũng</td><td>🏪 Lấy</td><td><span class="tag good sm">Hoàn tất</span></td><td>289k</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col" style="flex:1;">
+        <div class="box">
+          <div class="h-sec" style="margin:0 0 8px;"><b>Cảnh báo tồn kho</b></div>
+          <div class="drow" style="grid-template-columns:1fr auto; padding:6px 0;">
+            <div><div class="small bold">Phô mai Mozzarella</div><div class="muted tiny">còn 4 / tối thiểu 20</div></div><span class="tag bad sm">Sắp hết</span></div>
+          <div class="drow" style="grid-template-columns:1fr auto; padding:6px 0;">
+            <div><div class="small bold">Đế pizza L (frozen)</div><div class="muted tiny">còn 8 / tối thiểu 30</div></div><span class="tag warn sm">Thấp</span></div>
+          <div class="drow" style="grid-template-columns:1fr auto; padding:6px 0;">
+            <div><div class="small bold">Pepperoni</div><div class="muted tiny">còn 0</div></div><span class="tag bad sm">Hết</span></div>
+          <a class="tag sm mt-s" href="a07-inventory.html">Quản lý tồn kho ›</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note mt-l"><b>Annotation:</b> mọi KPI/biểu đồ là <b>server state</b> qua React Query (mock MSW). Bộ lọc chi nhánh ở top bar thay đổi toàn bộ số liệu. "Đơn đang xử lý" dùng trạng thái từ <b>order state machine</b>.</div>
+  </div>
+
+  <script src="chrome.js"></script>
+  <script src="admin-shell.js"></script>
+</body>
+</html>

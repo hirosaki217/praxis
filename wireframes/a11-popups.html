@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Popups — Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="popups" data-screen="a11-popups">
+
+  <div class="page">
+    <div class="h-sec"><h2>Admin — Popups &amp; Dialogs</h2><span class="sub">overlay component</span></div>
+    <p class="muted small">Drawer xem chi tiết + modal CRUD + AlertDialog xác nhận. Action nguy hiểm (hoàn tiền/xóa) guard bởi RBAC.</p>
+
+    <!-- ① Order Detail Drawer -->
+    <div class="eyebrow mt-l">① Order Detail · Drawer <span class="muted tiny">(click thẻ ở Order Board)</span></div>
+    <div class="stage tall">
+      <span class="label">DRAWER ›</span>
+      <div class="backdrop"></div>
+      <div class="drawer" style="width:min(440px,90%);">
+        <div class="modal-h">
+          <div>
+            <h3><span class="font-mono">#PF-20453</span></h3>
+            <div class="row" style="gap:6px;margin-top:4px;"><span class="tag accent sm">🛵 Giao</span><span class="tag sm">● Mới</span></div>
+          </div>
+          <span class="x">✕</span>
+        </div>
+        <div class="box flat" style="padding:10px;">
+          <div class="kv"><span class="k small">Khách</span><span class="small bold">Nguyễn V. An · 0901…</span></div>
+          <div class="kv"><span class="k small">Giờ đặt</span><span class="small">11:25</span></div>
+          <div class="kv"><span class="k small">Giao đến</span><span class="small">123 Nguyễn Huệ, Q.1</span></div>
+        </div>
+        <div class="mt-s">
+          <div class="drow" style="grid-template-columns:1fr auto;padding:6px 0;"><span class="small">Pepperoni (M) ×2</span><span class="small bold">378k</span></div>
+          <div class="drow" style="grid-template-columns:1fr auto;padding:6px 0;"><span class="small">Combo Gia Đình</span><span class="small bold">455k</span></div>
+          <div class="kv total" style="border:none;"><span class="k">Tổng</span><span class="v">738.400đ</span></div>
+        </div>
+        <div class="mt-s"><div class="eyebrow">Tiến trình</div>
+          <div class="timeline mt-s">
+            <div class="tl-row done"><span class="tl-dot"></span><div><div class="small bold">Đã đặt</div><div class="muted tiny">11:25</div></div></div>
+            <div class="tl-row"><span class="tl-line"></span></div>
+            <div class="tl-row"><span class="tl-dot"></span><div class="small">Đã xác nhận</div></div>
+          </div>
+        </div>
+        <div class="drawer-foot">
+          <div class="row" style="gap:8px;">
+            <div class="btn primary block">✓ Xác nhận ›</div>
+            <div class="btn ghost">In</div>
+          </div>
+          <div class="btn block mt-s" style="color:var(--wf-bad);border-color:#f4c2c2;">Hoàn tiền (chỉ Manager)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② Product Editor -->
+    <div class="eyebrow mt-l">② Product Editor · Modal (lg) <span class="muted tiny">(Menu Mgmt — tạo/sửa)</span></div>
+    <div class="stage tall">
+      <span class="label">MODAL · LG</span>
+      <div class="backdrop"></div>
+      <div class="modal lg">
+        <div class="modal-h"><h3>Sửa sản phẩm</h3><span class="x">✕</span></div>
+        <div class="grid g-2">
+          <div class="field"><label>Tên</label><div class="input">Pepperoni Feast</div></div>
+          <div class="field"><label>Danh mục</label><div class="input">Pizza ▾</div></div>
+        </div>
+        <div class="field mt-s"><label>Ảnh</label>
+          <div class="row center" style="gap:10px;"><div class="ph-img" style="width:50px;min-height:50px;border-radius:8px;"></div><div class="btn sm">Tải lên</div></div>
+        </div>
+        <div class="field mt-s"><label>Biến thể (size × giá)</label>
+          <table class="table">
+            <thead><tr><th>Size</th><th>Giá</th><th>Available</th></tr></thead>
+            <tbody>
+              <tr><td class="small">S</td><td><div class="input">99.000</div></td><td><span class="tag good sm">●</span></td></tr>
+              <tr><td class="small">M</td><td><div class="input">159.000</div></td><td><span class="tag good sm">●</span></td></tr>
+              <tr><td class="small">L</td><td><div class="input">219.000</div></td><td><span class="tag good sm">●</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="field mt-s"><label>Tag</label>
+          <div class="row" style="gap:6px;"><span class="tag warn sm">🌶 Cay ✓</span><span class="tag sm">+ Thêm tag</span></div>
+        </div>
+        <div class="modal-foot"><div class="btn ghost">Hủy</div><div class="btn primary">Lưu sản phẩm</div></div>
+      </div>
+    </div>
+
+    <!-- ③ Voucher Editor -->
+    <div class="eyebrow mt-l">③ Voucher Editor · Modal (lg) <span class="muted tiny">(Promotions — tạo/sửa)</span></div>
+    <div class="stage tall">
+      <span class="label">MODAL · LG</span>
+      <div class="backdrop"></div>
+      <div class="modal lg">
+        <div class="modal-h"><h3>Tạo voucher</h3><span class="x">✕</span></div>
+        <div class="grid g-2">
+          <div class="field"><label>Mã voucher</label><div class="input">PIZZA30</div></div>
+          <div class="field"><label>Loại</label><div class="input">% đơn ▾</div></div>
+        </div>
+        <div class="grid g-2 mt-s">
+          <div class="field"><label>Giá trị (%)</label><div class="input">30</div></div>
+          <div class="field"><label>Giảm tối đa (cap)</label><div class="input">150.000</div></div>
+        </div>
+        <div class="grid g-2 mt-s">
+          <div class="field"><label>Đơn tối thiểu</label><div class="input">200.000</div></div>
+          <div class="field"><label>Giới hạn lượt</label><div class="input">∞</div></div>
+        </div>
+        <div class="grid g-2 mt-s">
+          <div class="field"><label>Từ</label><div class="input">01/07/2026</div></div>
+          <div class="field"><label>Đến</label><div class="input">31/07/2026</div></div>
+        </div>
+        <div class="field mt-s"><label>Áp dụng kênh</label>
+          <div class="row" style="gap:6px;"><span class="tag accent sm">🛵 ✓</span><span class="tag accent sm">🏪 ✓</span><span class="tag accent sm">🍽 ✓</span></div>
+        </div>
+        <div class="modal-foot"><div class="btn ghost">Hủy</div><div class="btn primary">Lưu voucher</div></div>
+      </div>
+    </div>
+
+    <!-- ④ Restock -->
+    <div class="eyebrow mt-l">④ Restock · Modal <span class="muted tiny">(Inventory — nhập kho)</span></div>
+    <div class="stage">
+      <span class="label">MODAL</span>
+      <div class="backdrop"></div>
+      <div class="modal">
+        <div class="modal-h"><h3>Nhập kho</h3><span class="x">✕</span></div>
+        <div class="box flat" style="padding:10px;">
+          <div class="row between center"><span class="bold small">Phô mai Mozzarella</span><span class="tag bad sm">đang còn 4</span></div>
+          <div class="muted tiny">Chi nhánh: Lê Lợi · đơn vị: kg</div>
+        </div>
+        <div class="grid g-2 mt-s">
+          <div class="field"><label>Số lượng nhập</label><div class="input">20</div></div>
+          <div class="field"><label>Giá nhập (đơn vị)</label><div class="input">85.000</div></div>
+        </div>
+        <div class="field mt-s"><label>Ghi chú</label><div class="input">Lô HSD 15/09</div></div>
+        <div class="modal-foot"><div class="btn ghost">Hủy</div><div class="btn primary">Nhập kho</div></div>
+      </div>
+    </div>
+
+    <!-- ⑤ Confirm destructive -->
+    <div class="eyebrow mt-l">⑤ Confirm Destructive · AlertDialog <span class="muted tiny">(xóa / hoàn tiền)</span></div>
+    <div class="stage">
+      <span class="label">ALERT</span>
+      <div class="backdrop"></div>
+      <div class="modal center" style="text-align:center;">
+        <div class="alert-icon">!</div>
+        <h3 style="margin:4px 0;">Xóa sản phẩm "Seafood Deluxe"?</h3>
+        <div class="muted small">Hành động không thể hoàn tác. Sản phẩm sẽ ẩn khỏi mọi chi nhánh.</div>
+        <div class="modal-foot" style="justify-content:center;">
+          <div class="btn ghost">Hủy</div>
+          <div class="btn" style="background:var(--wf-bad);color:#fff;border-color:var(--wf-bad);">Xóa</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note mt-l"><b>Annotation:</b> drawer chi tiết = shadcn <code>Sheet</code> (right), CRUD = <code>Dialog</code> (lg), xác nhận = <code>AlertDialog</code>. Nút "Hoàn tiền"/disable theo <b>RBAC</b> (chỉ Manager). Form validate qua RHF + Zod (cùng contract với API). Save → mutation React Query → invalidate list.</div>
+  </div>
+
+  <script src="chrome.js"></script>
+</body>
+</html>

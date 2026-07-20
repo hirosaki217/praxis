@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu Management — Admin Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="admin" data-screen="a03-menu">
+  <div id="admin-content">
+
+    <!-- Category tabs + toolbar -->
+    <div class="box row between center wrap" style="padding:8px 14px;">
+      <div class="row wrap" style="gap:6px;">
+        <span class="tag accent">Pizza (12)</span>
+        <span class="tag">Sides (8)</span>
+        <span class="tag">Drinks (10)</span>
+        <span class="tag">Desserts (5)</span>
+        <span class="tag">Combos (4)</span>
+      </div>
+      <div class="row center" style="gap:8px;">
+        <div class="input">🔍 Tìm sản phẩm</div>
+        <div class="btn">+ Biến thể / Topping</div>
+        <div class="btn primary">+ Thêm sản phẩm</div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="box mt-m">
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width:40px;"></th><th>Tên sản phẩm</th><th>Biến thể (S/M/L/XL)</th>
+            <th>Tag</th><th>Available</th><th style="width:120px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="ph-img" style="min-height:30px;border-radius:4px;"></div></td>
+            <td class="bold">Pepperoni Feast</td>
+            <td class="small">99k / 159k / 219k / 289k</td>
+            <td><span class="tag warn sm">🌶 Cay</span></td>
+            <td><span class="tag good sm">● Bật</span></td>
+            <td><span class="tag sm">Sửa</span> <span class="tag sm">Nhân bản</span></td>
+          </tr>
+          <tr>
+            <td><div class="ph-img" style="min-height:30px;border-radius:4px;"></div></td>
+            <td class="bold">Margherita Classic</td>
+            <td class="small">79k / 129k / 179k / 239k</td>
+            <td><span class="tag sm">—</span></td>
+            <td><span class="tag good sm">● Bật</span></td>
+            <td><span class="tag sm">Sửa</span> <span class="tag sm">Nhân bản</span></td>
+          </tr>
+          <tr>
+            <td><div class="ph-img" style="min-height:30px;border-radius:4px;"></div></td>
+            <td class="bold">Veggie Garden</td>
+            <td class="small">89k / 129k / 179k / 229k</td>
+            <td><span class="tag good sm">🌱 Chay</span></td>
+            <td><span class="tag good sm">● Bật</span></td>
+            <td><span class="tag sm">Sửa</span> <span class="tag sm">Nhân bản</span></td>
+          </tr>
+          <tr>
+            <td><div class="ph-img" style="min-height:30px;border-radius:4px;"></div></td>
+            <td class="bold">Seafood Deluxe</td>
+            <td class="small">129k / 179k / 239k / 309k</td>
+            <td><span class="tag sm">⭐ Bán chạy</span></td>
+            <td><span class="tag bad sm">○ Tắt</span></td>
+            <td><span class="tag sm">Sửa</span> <span class="tag sm">Nhân bản</span></td>
+          </tr>
+          <tr>
+            <td><div class="ph-img" style="min-height:30px;border-radius:4px;"></div></td>
+            <td class="bold">Combo Gia Đình</td>
+            <td class="small">bundle · 455k (−30%)</td>
+            <td><span class="tag accent sm">Combo</span></td>
+            <td><span class="tag good sm">● Bật</span></td>
+            <td><span class="tag sm">Sửa</span> <span class="tag sm">Nhân bản</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row between center mt-s"><span class="muted small">Hiển thị 5 / 12 pizza</span><div class="row"><span class="tag sm">‹</span><span class="tag sm">1</span><span class="tag sm">2</span><span class="tag sm">3</span><span class="tag sm">›</span></div></div>
+    </div>
+
+    <!-- Editor hint -->
+    <div class="grid g-3 mt-m">
+      <div class="box flat"><div class="eyebrow">Biến thể</div><div class="bold mt-s">Size × Crust</div><div class="muted small">Mỗi cỡ + loại đế có giá riêng. Topping thêm giá theo cỡ.</div></div>
+      <div class="box flat"><div class="eyebrow">Topping</div><div class="bold mt-s">Đồ thêm</div><div class="muted small">CRUD topping, giá theo size, available theo chi nhánh.</div></div>
+      <div class="box flat"><div class="eyebrow">Combo</div><div class="bold mt-s">Gói bundle</div><div class="muted small">Chọn nhiều sản phẩm → giá bundle vs giá gốc → tự tính % giảm.</div></div>
+    </div>
+
+    <div class="note mt-m"><b>Annotation:</b> menu có thể <b>khác theo chi nhánh</b> (availability + giá). Toggle "Available" = ẩn/hiện ở storefront ngay. Giá biến thể là đầu vào cho <b>pricing engine</b>.</div>
+  </div>
+
+  <script src="chrome.js"></script>
+  <script src="admin-shell.js"></script>
+</body>
+</html>

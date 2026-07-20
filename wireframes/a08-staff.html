@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff & RBAC — Admin Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .matrix th, .matrix td { text-align:center; }
+    .matrix th:first-child, .matrix td:first-child { text-align:left; }
+    .yes { color:var(--wf-good); font-weight:700; }
+    .no { color:var(--wf-line); }
+    .partial { color:var(--wf-warn); font-weight:700; }
+  </style>
+</head>
+<body data-group="admin" data-screen="a08-staff">
+  <div id="admin-content">
+
+    <div class="box row between center wrap" style="padding:8px 14px;">
+      <div class="input">🔍 Tìm nhân viên</div>
+      <div class="row" style="gap:8px;"><div class="btn">+ Thêm nhân viên</div><div class="btn ghost">Quản lý vai trò</div></div>
+    </div>
+
+    <div class="box mt-m">
+      <div class="h-sec" style="margin:0 0 6px;"><b>Danh sách nhân viên</b><span class="sub">12 người</span></div>
+      <table class="table">
+        <thead><tr><th>Nhân viên</th><th>Vai trò</th><th>Chi nhánh</th><th>Trạng thái</th><th>Hoạt động cuối</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:26px;min-height:26px;border-radius:50%;"></div><b class="small">Nguyễn Q. Quân</b></div></td><td><span class="tag accent sm">Manager</span></td><td class="small">Lê Lợi</td><td><span class="tag good sm">● Online</span></td><td class="small">now</td><td><span class="tag sm">Sửa</span></td></tr>
+          <tr><td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:26px;min-height:26px;border-radius:50%;"></div><b class="small">Trần P. Phúc</b></div></td><td><span class="tag sm">Cashier</span></td><td class="small">Lê Lợi</td><td><span class="tag good sm">● Online</span></td><td class="small">2 phút</td><td><span class="tag sm">Sửa</span></td></tr>
+          <tr><td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:26px;min-height:26px;border-radius:50%;"></div><b class="small">Lê R. Rạng</b></div></td><td><span class="tag sm">Kitchen</span></td><td class="small">Hoàn Kiếm</td><td><span class="muted small">○ Offline</span></td><td class="small">1 giờ</td><td><span class="tag sm">Sửa</span></td></tr>
+          <tr><td><div class="row center" style="gap:8px;"><div class="ph-img" style="width:26px;min-height:26px;border-radius:50%;"></div><b class="small">Phạm S. Sơn</b></div></td><td><span class="tag sm">Driver</span></td><td class="small">Lê Lợi</td><td><span class="tag good sm">● Đang giao</span></td><td class="small">now</td><td><span class="tag sm">Sửa</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Permission matrix -->
+    <div class="box mt-l">
+      <div class="h-sec" style="margin:0 0 6px;"><b>Ma trận phân quyền (RBAC)</b><span class="sub">✓ có · ◐ giới hạn · — không</span></div>
+      <table class="table matrix">
+        <thead>
+          <tr><th>Quyền</th><th>Manager</th><th>Cashier</th><th>Kitchen</th><th>Driver</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="small">Xem đơn hàng</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="partial">◐</span></td></tr>
+          <tr><td class="small">Chuyển trạng thái đơn</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="partial">◐ bếp</span></td><td><span class="partial">◐ giao</span></td></tr>
+          <tr><td class="small">Hoàn tiền / hủy</td><td><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><td class="small">Quản lý menu</td><td><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><td class="small">Quản lý khuyến mãi</td><td><span class="yes">✓</span></td><td><span class="partial">◐</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><td class="small">Quản lý tồn kho</td><td><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="partial">◐</span></td><td><span class="no">—</span></td></tr>
+          <tr><td class="small">Quản lý nhân viên</td><td><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><td class="small">Xem báo cáo / tài chính</td><td><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><td class="small">Cài đặt hệ thống</td><td><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note mt-m"><b>Annotation:</b> quyền check ở <b>2 nơi</b>: routing (chặn route) + action (ẩn/disable nút) VÀ trong <b>order state machine</b> (vd: hoàn tiền chỉ manager). "◐ giới hạn" = chỉ thao tác trong phạm vi role (kitchen chỉ đổi trạng thái bếp, driver chỉ cập nhật giao hàng).</div>
+  </div>
+
+  <script src="chrome.js"></script>
+  <script src="admin-shell.js"></script>
+</body>
+</html>

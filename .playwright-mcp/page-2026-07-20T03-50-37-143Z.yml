@@ -1,0 +1,97 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]: Wireframe
+    - generic [ref=e4]: Storefront
+    - link "⊞ Tất cả" [ref=e5] [cursor=pointer]:
+      - /url: index.html
+    - generic: ←
+    - generic: →
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - text: Wireframe · Lo-fi
+      - heading "Order Pizza — Wireframes" [level=1] [ref=e8]
+      - paragraph [ref=e9]: Bản phác layout grayscale cho storefront & admin. Click vào từng ô để xem màn hình; dùng thanh điều hướng trên cùng để chuyển tiếp/lùi.
+      - generic [ref=e10]:
+        - generic [ref=e11]: React + Vite + TS
+        - generic [ref=e12]: Tailwind + shadcn/ui
+        - generic [ref=e13]: "3 kênh: Delivery · Pickup · Dine-in"
+        - generic [ref=e14]: focus business logic + FE
+    - generic [ref=e15]:
+      - heading "Storefront" [level=2] [ref=e16]
+      - generic [ref=e17]: flow khách hàng
+    - generic [ref=e18]:
+      - link "01 Menu / Home hero · category · product grid" [ref=e19] [cursor=pointer]:
+        - /url: 01-menu.html
+        - generic [ref=e20]: "01"
+        - generic [ref=e21]: Menu / Home
+        - generic [ref=e22]: hero · category · product grid
+      - link "02 Product Detail size · crust · toppings · giá realtime" [ref=e23] [cursor=pointer]:
+        - /url: 02-product-detail.html
+        - generic [ref=e24]: "02"
+        - generic [ref=e25]: Product Detail
+        - generic [ref=e26]: size · crust · toppings · giá realtime
+      - link "03 Cart line items · chọn kênh · voucher" [ref=e27] [cursor=pointer]:
+        - /url: 03-cart.html
+        - generic [ref=e28]: "03"
+        - generic [ref=e29]: Cart
+        - generic [ref=e30]: line items · chọn kênh · voucher
+      - link "04 Checkout (3 kênh) Delivery · Pickup · Dine-in · payment" [ref=e31] [cursor=pointer]:
+        - /url: 04-checkout.html
+        - generic [ref=e32]: "04"
+        - generic [ref=e33]: Checkout (3 kênh)
+        - generic [ref=e34]: Delivery · Pickup · Dine-in · payment
+      - link "05 Order Tracking stepper · ETA · map/driver" [ref=e35] [cursor=pointer]:
+        - /url: 05-order-tracking.html
+        - generic [ref=e36]: "05"
+        - generic [ref=e37]: Order Tracking
+        - generic [ref=e38]: stepper · ETA · map/driver
+      - link "06 Account order history · địa chỉ · loyalty" [ref=e39] [cursor=pointer]:
+        - /url: 06-account.html
+        - generic [ref=e40]: "06"
+        - generic [ref=e41]: Account
+        - generic [ref=e42]: order history · địa chỉ · loyalty
+    - generic [ref=e43]:
+      - heading "Admin Dashboard" [level=2] [ref=e44]
+      - generic [ref=e45]: đợt sau
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]: A1
+        - generic [ref=e49]: Dashboard
+        - generic [ref=e50]: KPI · biểu đồ · top sản phẩm
+      - generic [ref=e51]:
+        - generic [ref=e52]: A2
+        - generic [ref=e53]: Order Board
+        - generic [ref=e54]: Kanban theo trạng thái
+      - generic [ref=e55]:
+        - generic [ref=e56]: A3
+        - generic [ref=e57]: Menu Mgmt
+        - generic [ref=e58]: CRUD sản phẩm / biến thể / combo
+      - generic [ref=e59]:
+        - generic [ref=e60]: A4
+        - generic [ref=e61]: Promotions
+        - generic [ref=e62]: voucher · lịch trình · giới hạn
+      - generic [ref=e63]:
+        - generic [ref=e64]: A5
+        - generic [ref=e65]: Customers
+        - generic [ref=e66]: phân khúc · lịch sử · loyalty
+      - generic [ref=e67]:
+        - generic [ref=e68]: A6
+        - generic [ref=e69]: Branches
+        - generic [ref=e70]: đa chi nhánh · zone giao hàng
+      - generic [ref=e71]:
+        - generic [ref=e72]: A7
+        - generic [ref=e73]: Inventory
+        - generic [ref=e74]: tồn kho · cảnh báo
+      - generic [ref=e75]:
+        - generic [ref=e76]: A8
+        - generic [ref=e77]: Staff & RBAC
+        - generic [ref=e78]: role · permission
+      - generic [ref=e79]:
+        - generic [ref=e80]: A9
+        - generic [ref=e81]: Reports
+        - generic [ref=e82]: doanh thu · hiệu suất · CSV
+      - generic [ref=e83]:
+        - generic [ref=e84]: A10
+        - generic [ref=e85]: Settings
+        - generic [ref=e86]: thuế · payment · branding
+    - generic [ref=e87]: "Đọc wireframe: ô xám chéo = ảnh placeholder · thanh xám = text · nút xanh = CTA chính · khung nét đứt xanh = ghi chú tương tác (annotation). Bản này tập trung layout & cấu trúc nghiệp vụ, không phải visual design cuối."

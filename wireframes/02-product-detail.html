@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Detail — Wireframe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-group="storefront" data-screen="02-product-detail">
+
+  <header class="store-header">
+    <div class="inner">
+      <div class="logo">🍕 PizzaForge</div>
+      <div class="search"><span>🔍</span>&nbsp; Tìm pizza, món ăn kèm, combo…</div>
+      <div class="ico-btn">👤</div>
+      <div class="ico-btn">🛒<span class="cart-badge">3</span></div>
+    </div>
+  </header>
+  <nav class="catbar">
+    <div class="inner"><a>Pizza</a><a>Sides</a><a>Drinks</a><a>Desserts</a><a>Combos</a><a>🔥 Deals</a></div>
+  </nav>
+
+  <div class="page">
+    <div class="muted small">Menu / Pizza / <b style="color:var(--wf-ink)">Pepperoni Feast</b></div>
+
+    <div class="row mt-m" style="align-items:flex-start;">
+      <!-- Gallery -->
+      <div class="col" style="flex:1.1;">
+        <div class="box flat" style="padding:0; overflow:hidden;">
+          <div class="ph-img" style="min-height:340px; border-radius:0; border:none;"></div>
+        </div>
+        <div class="row mt-s">
+          <div class="ph-img square" style="flex:1;"></div>
+          <div class="ph-img square" style="flex:1;"></div>
+          <div class="ph-img square" style="flex:1;"></div>
+          <div class="ph-img square" style="flex:1;"></div>
+        </div>
+      </div>
+
+      <!-- Configurator -->
+      <div class="col" style="flex:1.4;">
+        <div class="box stack">
+          <div class="row between center">
+            <span class="tag warn">🌶 Cay</span>
+            <span class="muted small">⭐ 4.8 (1.204 đánh giá)</span>
+          </div>
+          <div>
+            <h1 style="margin:2px 0 4px; font-size:24px;">Pepperoni Feast</h1>
+            <p class="muted" style="margin:0;">Pepperoni bọc phô mai mozzarella, sốt cà chua, chút ớt — đậm vị.</p>
+          </div>
+
+          <!-- Size -->
+          <div class="field">
+            <label>Chọn cỡ <span class="muted tiny">— 8 / 10 / 12 miếng</span></label>
+            <div class="seg">
+              <div class="opt">S · 99k</div>
+              <div class="opt on">M · 159k</div>
+              <div class="opt">L · 219k</div>
+              <div class="opt">XL · 289k</div>
+            </div>
+          </div>
+
+          <!-- Crust -->
+          <div class="field">
+            <label>Loại đế</label>
+            <div class="seg">
+              <div class="opt on">Mỏng</div>
+              <div class="opt">Dày +20k</div>
+              <div class="opt">Cheese Crust +35k</div>
+            </div>
+          </div>
+
+          <!-- Toppings -->
+          <div class="field">
+            <label>Topping thêm <span class="muted tiny">— giá theo cỡ</span></label>
+            <div class="grid g-2">
+              <div class="box fill" style="padding:10px;"><div class="row between center"><span>Extra Cheese</span><span class="muted small">+15k</span></div></div>
+              <div class="box fill" style="padding:10px; border-color:var(--wf-accent); background:var(--wf-accent-soft);"><div class="row between center"><span class="bold">Pepperoni ×2</span><span class="small">+20k ✓</span></div></div>
+              <div class="box fill" style="padding:10px;"><div class="row between center"><span>Nấm</span><span class="muted small">+12k</span></div></div>
+              <div class="box fill" style="padding:10px; border-color:var(--wf-accent); background:var(--wf-accent-soft);"><div class="row between center"><span class="bold">Ớt xanh</span><span class="small">+10k ✓</span></div></div>
+              <div class="box fill" style="padding:10px;"><div class="row between center"><span>Hành tây</span><span class="muted small">+10k</span></div></div>
+              <div class="box fill" style="padding:10px;"><div class="row between center"><span>Bacon</span><span class="muted small">+22k</span></div></div>
+            </div>
+          </div>
+
+          <!-- Qty + price + CTA -->
+          <div class="row between center mt-s" style="border-top:1px dashed var(--wf-line); padding-top:14px;">
+            <div class="row center">
+              <div class="seg"><div class="opt">−</div><div class="opt on">2</div><div class="opt">+</div></div>
+            </div>
+            <div class="stack" style="align-items:flex-end;">
+              <span class="muted tiny">Tạm tính (size M · 2 topping)</span>
+              <span style="font-size:22px; font-weight:800;">378.000đ</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="btn ghost block">♡ Yêu thích</div>
+            <div class="btn primary block lg">🛒 Thêm vào giỏ · 378.000đ</div>
+          </div>
+        </div>
+
+        <div class="note mt-m"><b>Annotation:</b> giá hiển thị tính <b>realtime bởi pricing engine</b> mỗi khi đổi size/đế/topping/qty. Giá topping <b>phụ thuộc cỡ</b> (topping L đắt hơn S). Nút CTA hiển thị luôn tổng tiền tạm tính.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="store-footer"><div class="inner"><div>🍕 PizzaForge</div><div>Theo dõi đơn · Hỗ trợ · Điều khoản</div></div></footer>
+  <script src="chrome.js"></script>
+</body>
+</html>
