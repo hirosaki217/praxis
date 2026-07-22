@@ -1,11 +1,10 @@
-import './App.css'
+import { Providers } from '@/app/providers'
+import { AppRouter } from '@/app/routes'
 
-function App() {
+export default function App() {
   return (
-    <>
-      <div className="text-blue-500">Hi</div>
-    </>
+    <Providers>
+      <AppRouter />
+    </Providers>
   )
 }
-
-export default App
