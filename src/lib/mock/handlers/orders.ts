@@ -1,7 +1,11 @@
 import { http, HttpResponse } from 'msw'
 import { getDB, persist } from '../db'
 import { createOrderSchema } from '@/validation/order'
-import type { Order, OrderLine, OrderStatus, Fulfilment, OrderTotals } from '@/types'
+import { computeOrderTotals, lineUnitPrice, type PricingLine } from '@/lib/pricing'
+import { canTransition } from '@/lib/orders'
+import type { Order, OrderLine, OrderStatus, Fulfilment, Promotion } from '@/types'
+
+const DEFAULT_DELIVERY_FEE = 25000
 
 export const orderHandlers = [
   http.get('/api/orders', ({ request }) => {
@@ -28,16 +32,21 @@ export const orderHandlers = [
     const input = parsed.data
     const db = getDB()
 
+    // 1) build lines: đơn giá = biến thể + topping (theo size) qua pricing engine
     const lines: OrderLine[] = input.lines.map((l, i) => {
       const product = db.products.find((p) => p.id === l.productId)
       const variant = product?.variants?.find((v) => v.id === l.variantId) ?? product?.variants?.[0]
-      const unit = variant?.price ?? 0
+      const size = variant?.size ?? 'M'
+      const selectedToppingIds = l.toppings.map((t) => t.toppingId)
+      const unit = variant
+        ? lineUnitPrice(variant, product?.toppings ?? [], selectedToppingIds, size)
+        : 0
       return {
         id: `ol-new-${i}`,
         productId: l.productId,
         productName: product?.name ?? '',
         variantId: variant?.id ?? l.variantId,
-        size: variant?.size ?? 'M',
+        size,
         toppings: [],
         qty: l.qty,
         unitPrice: unit,
@@ -45,29 +54,31 @@ export const orderHandlers = [
       }
     })
 
-    const linesSubtotal = lines.reduce((s, l) => s + l.lineTotal, 0)
-    const fee = input.channel === 'delivery' ? 25000 : 0
-    const tax = Math.round((linesSubtotal + fee) * 0.08)
-    const grandTotal = linesSubtotal + fee + tax
+    // 2) pricing input
+    const branchId = input.fulfilment.channel === 'delivery' ? undefined : input.fulfilment.branchId
+    const taxRate = db.branches.find((b) => b.id === branchId)?.taxRate ?? 0.08
+    const promotions: Promotion[] = (input.promotionCodes ?? [])
+      .map((code) => db.promotions.find((p) => p.code === code.toUpperCase()))
+      .filter((p): p is Promotion => Boolean(p))
 
+    const pricingLines: PricingLine[] = lines.map((l) => ({ unitPrice: l.unitPrice, qty: l.qty }))
+    const totals = computeOrderTotals({
+      lines: pricingLines,
+      channel: input.channel,
+      deliveryFee: DEFAULT_DELIVERY_FEE,
+      taxRate,
+      promotions,
+    })
+
+    // 3) fulfilment (fee lấy từ engine — đã tính free ship)
     const fulfilment: Fulfilment =
       input.fulfilment.channel === 'delivery'
-        ? { channel: 'delivery', addressId: input.fulfilment.addressId, fee }
+        ? { channel: 'delivery', addressId: input.fulfilment.addressId, fee: totals.deliveryFee }
         : input.fulfilment.channel === 'pickup'
           ? { channel: 'pickup', branchId: input.fulfilment.branchId, slot: input.fulfilment.slot }
           : { channel: 'dine-in', branchId: input.fulfilment.branchId, tableId: input.fulfilment.tableId }
 
-    const totals: OrderTotals = {
-      linesSubtotal,
-      comboDiscount: 0,
-      orderDiscount: 0,
-      deliveryFee: fee,
-      tax,
-      loyaltyDiscount: 0,
-      grandTotal,
-      pointsToEarn: Math.round(grandTotal / 10000),
-    }
-
+    // 4) sinh mã
     const maxNum = db.orders.reduce((m, o) => {
       const n = Number(o.code.replace('PF-', ''))
       return Number.isNaN(n) ? m : Math.max(m, n)
@@ -86,7 +97,7 @@ export const orderHandlers = [
       totals,
       paymentMethod: input.paymentMethod,
       paymentStatus: 'pending',
-      appliedPromotions: [],
+      appliedPromotions: promotions.map((p) => p.id),
       createdAt: now,
       updatedAt: now,
     }
@@ -101,7 +112,16 @@ export const orderHandlers = [
     const o = getDB().orders.find((x) => x.id === id)
     if (!o) return new HttpResponse(null, { status: 404 })
     const body = (await request.json()) as { status?: OrderStatus }
-    if (body.status) o.status = body.status
+
+    if (body.status && body.status !== o.status) {
+      if (!canTransition(o.channel, o.status, body.status)) {
+        return HttpResponse.json(
+          { message: `Không thể chuyển trạng thái: ${o.status} → ${body.status} (kênh ${o.channel})` },
+          { status: 409 },
+        )
+      }
+      o.status = body.status
+    }
     o.updatedAt = new Date().toISOString()
     persist()
     return HttpResponse.json(o)
