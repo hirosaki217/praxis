@@ -1,38 +1,85 @@
-import { ChannelTag, DataTable, FeaturePlaceholder, FilterBar, Money, StatusBadge } from '@/components/shared'
-import { Button } from '@/components/ui/button'
-import { useQuery } from '@tanstack/react-query'
-import type { Order } from '@/types'
+import { useMemo, useState } from 'react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { ErrorState, FilterBar, LoadingState, PageHeader } from '@/components/shared'
+import type { Channel, Order } from '@/types'
+import { useAdminOrders } from './hooks/useAdminOrders'
+import { useUpdateOrderStatus } from './hooks/useUpdateOrderStatus'
+import { OrderBoard } from './components/OrderBoard'
+import { OrderDetailDrawer } from './components/OrderDetailDrawer'
+
+const CHANNEL_OPTIONS: Array<{ value: Channel | 'all'; label: string }> = [
+  { value: 'all', label: 'Tất cả kênh' },
+  { value: 'delivery', label: 'Delivery' },
+  { value: 'pickup', label: 'Pickup' },
+  { value: 'dine-in', label: 'Dine-in' },
+]
 
 export default function OrdersPage() {
-  const { data = [], isLoading } = useQuery({
-    queryKey: ['orders'],
-    queryFn: async () => (await fetch('/api/orders').then((response) => response.json())) as Order[],
+  const [channel, setChannel] = useState<Channel | 'all'>('all')
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
+  const { data: orders = [], isLoading, isError, refetch } = useAdminOrders({
+    channel: channel === 'all' ? undefined : channel,
   })
+  const updateOrderStatus = useUpdateOrderStatus()
+
+  const ordered = useMemo(
+    () => [...orders].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()),
+    [orders],
+  )
+
+  const handleAdvance = async (order: Order, nextStatus: Order['status']) => {
+    const updated = await updateOrderStatus.mutateAsync({ id: order.id, status: nextStatus })
+    if (selectedOrder?.id === order.id) setSelectedOrder(updated)
+  }
 
   return (
-    <FeaturePlaceholder
-      title='Order Board'
-      subtitle='Skeleton cho Phase 4 — route đã sẵn sàng để nối kanban/state-machine ở Phase 6.'
-      description='Bước tiếp theo sẽ là board theo cột trạng thái, kéo-thả và action transition.'
-      actions={<Button variant='outline'>Xuất CSV</Button>}
-    >
-      <FilterBar>
-        <StatusBadge kind='payment' status='pending' />
-        <ChannelTag channel='delivery' />
-      </FilterBar>
-      <DataTable<Order>
-        columns={[
-          { key: 'code', header: 'Mã đơn', cell: (order) => <span className='font-mono font-medium'>{order.code}</span> },
-          { key: 'customer', header: 'Khách hàng', cell: (order) => order.customerName },
-          { key: 'channel', header: 'Kênh', cell: (order) => <ChannelTag channel={order.channel} /> },
-          { key: 'status', header: 'Trạng thái', cell: (order) => <StatusBadge status={order.status} /> },
-          { key: 'total', header: 'Tổng tiền', className: 'text-right', headerClassName: 'text-right', cell: (order) => <Money value={order.totals.grandTotal} className='font-medium' /> },
-        ]}
-        data={data.slice(0, 5)}
-        getRowKey={(order) => order.id}
-        loading={isLoading}
-        emptyDescription='Khi hoàn thiện admin board, danh sách này sẽ là nguồn cho kanban theo trạng thái.'
+    <div className='space-y-6'>
+      <PageHeader
+        title='Order Board'
+        subtitle='Theo dõi các đơn từ storefront theo nhóm trạng thái và cập nhật chúng theo state machine.'
       />
-    </FeaturePlaceholder>
+
+      <FilterBar>
+        <Select value={channel} onValueChange={(value: string) => setChannel(value as Channel | 'all')}>
+          <SelectTrigger className='w-full sm:w-52'>
+            <SelectValue placeholder='Lọc theo kênh' />
+          </SelectTrigger>
+          <SelectContent>
+            {CHANNEL_OPTIONS.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </FilterBar>
+
+      {isLoading ? <LoadingState className='rounded-xl border p-10' label='Đang tải order board…' /> : null}
+      {isError ? (
+        <ErrorState
+          title='Không tải được order board'
+          description='Vui lòng thử lại để lấy danh sách đơn mới nhất.'
+          onRetry={() => void refetch()}
+        />
+      ) : null}
+      {!isLoading && !isError ? (
+        <OrderBoard
+          orders={ordered}
+          onOpenDetail={setSelectedOrder}
+          onAdvance={handleAdvance}
+          updatingOrderId={updateOrderStatus.variables?.id}
+        />
+      ) : null}
+
+      <OrderDetailDrawer
+        order={selectedOrder}
+        open={Boolean(selectedOrder)}
+        onOpenChange={(open) => {
+          if (!open) setSelectedOrder(null)
+        }}
+        onAdvance={handleAdvance}
+        isUpdating={updateOrderStatus.isPending}
+      />
+    </div>
   )
 }
