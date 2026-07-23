@@ -1,16 +1,23 @@
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { Card } from '@/components/ui/card'
+import { useEffect, useMemo, useState } from 'react'
+import { SearchIcon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupText } from '@/components/ui/input-group'
 import {
   ChannelTag,
-  ConfirmDialog,
-  Money,
+  EmptyState,
+  ErrorState,
+  FilterBar,
+  LoadingState,
   PageHeader,
   SegmentedControl,
-  StatusBadge,
 } from '@/components/shared'
-import { Button } from '@/components/ui/button'
-import type { Channel, OrderStatus, Product } from '@/types'
+import type { Category, Channel, Product } from '@/types'
+import { useStorefrontBranches } from './hooks/useStorefrontBranches'
+import { useMenuCategories } from './hooks/useMenuCategories'
+import { useMenuProducts } from './hooks/useMenuProducts'
+import { MenuProductCard } from './components/MenuProductCard'
+import { ProductConfiguratorDialog } from './components/ProductConfiguratorDialog'
+import { useCartStore } from '@/features/storefront/cart/cart.store'
 
 const CHANNELS: { value: Channel; label: string }[] = [
   { value: 'delivery', label: '🛵 Giao' },
@@ -18,60 +25,118 @@ const CHANNELS: { value: Channel; label: string }[] = [
   { value: 'dine-in', label: '🍽️ Quán' },
 ]
 
+const ALL_CATEGORY = 'all'
+
 export default function MenuPage() {
-  const [channel, setChannel] = useState<Channel>('delivery')
-  const { data: products = [], isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn: async () => (await fetch('/api/products').then((r) => r.json())) as Product[],
+  const cartChannel = useCartStore((state) => state.channel)
+  const hydrateFromBranch = useCartStore((state) => state.hydrateFromBranch)
+  const setChannel = useCartStore((state) => state.setChannel)
+  const [channel, setLocalChannel] = useState<Channel>(cartChannel)
+  const [search, setSearch] = useState('')
+  const [categoryId, setCategoryId] = useState<string>(ALL_CATEGORY)
+  const [activeProduct, setActiveProduct] = useState<Product | null>(null)
+  const { data: branches = [] } = useStorefrontBranches()
+  const { data: categories = [], isLoading: categoriesLoading } = useMenuCategories()
+  const {
+    data: products = [],
+    isLoading: productsLoading,
+    isError,
+    refetch,
+  } = useMenuProducts({
+    categoryId: categoryId === ALL_CATEGORY ? undefined : categoryId,
+    search: search.trim() || undefined,
   })
 
-  const statuses: OrderStatus[] = ['created', 'preparing', 'out_for_delivery', 'completed', 'cancelled']
+  useEffect(() => {
+    const firstOpenBranch = branches.find((branch) => branch.status === 'open')
+    if (firstOpenBranch) hydrateFromBranch(firstOpenBranch)
+  }, [branches, hydrateFromBranch])
+
+  const allCategories = useMemo<Category[]>(() => {
+    const synthetic = { id: ALL_CATEGORY, name: 'Tất cả', slug: ALL_CATEGORY, sortOrder: 0 }
+    return [synthetic, ...categories]
+  }, [categories])
+
+  const handleChannelChange = (next: Channel) => {
+    setLocalChannel(next)
+    setChannel(next)
+  }
 
   return (
-    <div className='mx-auto max-w-5xl space-y-6 p-6'>
+    <div className='mx-auto max-w-6xl space-y-6 p-6'>
       <PageHeader
         title='🍕 PizzaForge'
-        subtitle='P4a — demo nền UI + data stack (React Query + MSW)'
-        actions={
-          <ConfirmDialog
-            trigger={<Button variant='outline'>Reset demo</Button>}
-            title='Reset demo data?'
-            description='Phase 4 chỉ mới dựng shell + shared components; bước sau sẽ nối reset thật với seed data.'
-            confirmLabel='Đã hiểu'
-          />
-        }
+        subtitle='Khám phá menu, chọn cấu hình món và thêm vào giỏ hàng trong một flow liền mạch.'
+        actions={<ChannelTag channel={channel} size='md' />}
       />
 
-      <div className='flex flex-wrap items-center gap-3'>
-        <SegmentedControl value={channel} onChange={setChannel} options={CHANNELS} />
-        <ChannelTag channel={channel} size='md' />
-      </div>
+      <FilterBar>
+        <SegmentedControl value={channel} onChange={handleChannelChange} options={CHANNELS} />
+        <InputGroup className='min-w-[260px] max-w-md'>
+          <InputGroupAddon>
+            <InputGroupText>
+              <SearchIcon className='size-4' />
+            </InputGroupText>
+          </InputGroupAddon>
+          <InputGroupInput
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder='Tìm pizza, món ăn kèm…'
+            aria-label='Tìm sản phẩm'
+          />
+        </InputGroup>
+      </FilterBar>
 
-      <div className='flex flex-wrap gap-2'>
-        {statuses.map((s) => (
-          <StatusBadge key={s} status={s} />
-        ))}
-      </div>
+      <section className='space-y-3'>
+        <div className='flex flex-wrap gap-2'>
+          {categoriesLoading ? (
+            <LoadingState className='justify-start p-0' />
+          ) : (
+            allCategories.map((category) => (
+              <Button
+                key={category.id}
+                type='button'
+                variant={categoryId === category.id ? 'default' : 'outline'}
+                onClick={() => setCategoryId(category.id)}
+              >
+                {category.name}
+              </Button>
+            ))
+          )}
+        </div>
+      </section>
 
-      <p className='text-sm text-muted-foreground'>
-        Sản phẩm: {isLoading ? '…' : products.length} · giá đầu:{' '}
-        {products[0] ? (
-          <Money value={products[0].variants[0]?.price ?? 0} className='font-semibold text-foreground' />
-        ) : (
-          '—'
-        )}
-      </p>
+      {productsLoading ? <LoadingState className='rounded-xl border' /> : null}
+      {isError ? (
+        <ErrorState
+          title='Không tải được menu'
+          description='Vui lòng thử lại để lấy danh sách sản phẩm mới nhất.'
+          onRetry={() => void refetch()}
+        />
+      ) : null}
+      {!productsLoading && !isError && !products.length ? (
+        <EmptyState
+          title='Không tìm thấy món phù hợp'
+          description='Thử đổi từ khóa tìm kiếm hoặc chọn danh mục khác.'
+        />
+      ) : null}
 
-      <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-        {products.slice(0, 6).map((p) => (
-          <Card key={p.id} className='p-4'>
-            <div className='font-medium'>{p.name}</div>
-            <div className='mt-1 text-sm text-muted-foreground'>
-              từ <Money value={p.variants[0]?.price ?? 0} className='font-semibold text-foreground' />
-            </div>
-          </Card>
-        ))}
-      </div>
+      {!productsLoading && !isError && products.length ? (
+        <div className='grid gap-4 sm:grid-cols-2 xl:grid-cols-3'>
+          {products.map((product) => (
+            <MenuProductCard key={product.id} product={product} onQuickAdd={setActiveProduct} />
+          ))}
+        </div>
+      ) : null}
+
+      <ProductConfiguratorDialog
+        product={activeProduct}
+        channel={channel}
+        open={Boolean(activeProduct)}
+        onOpenChange={(open) => {
+          if (!open) setActiveProduct(null)
+        }}
+      />
     </div>
   )
 }

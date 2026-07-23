@@ -16,7 +16,7 @@ export interface OrderLine {
 }
 
 export type Fulfilment =
-  | { channel: 'delivery'; addressId: ID; fee: Money; driverName?: string }
+  | { channel: 'delivery'; addressId: ID; fee: Money; note?: string; driverName?: string }
   | { channel: 'pickup'; branchId: ID; slot: string }
   | { channel: 'dine-in'; branchId: ID; tableId: ID }
 
@@ -33,9 +33,10 @@ export interface OrderTotals {
 
 export interface Order {
   id: ID
-  code: string                   // 'PF-20451'
+  code: string
   customerId?: ID
   customerName: string
+  customerPhone?: string
   channel: Channel
   status: OrderStatus
   lines: OrderLine[]

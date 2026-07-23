@@ -32,29 +32,31 @@ export const orderHandlers = [
     const input = parsed.data
     const db = getDB()
 
-    // 1) build lines: đơn giá = biến thể + topping (theo size) qua pricing engine
     const lines: OrderLine[] = input.lines.map((l, i) => {
       const product = db.products.find((p) => p.id === l.productId)
       const variant = product?.variants?.find((v) => v.id === l.variantId) ?? product?.variants?.[0]
       const size = variant?.size ?? 'M'
       const selectedToppingIds = l.toppings.map((t) => t.toppingId)
-      const unit = variant
-        ? lineUnitPrice(variant, product?.toppings ?? [], selectedToppingIds, size)
-        : 0
+      const unit = variant ? lineUnitPrice(variant, product?.toppings ?? [], selectedToppingIds, size) : 0
       return {
         id: `ol-new-${i}`,
         productId: l.productId,
         productName: product?.name ?? '',
         variantId: variant?.id ?? l.variantId,
         size,
-        toppings: [],
+        toppings: (product?.toppings ?? [])
+          .filter((topping) => selectedToppingIds.includes(topping.id))
+          .map((topping) => ({
+            toppingId: topping.id,
+            name: topping.name,
+            price: topping.priceBySize[size] ?? 0,
+          })),
         qty: l.qty,
         unitPrice: unit,
         lineTotal: unit * l.qty,
       }
     })
 
-    // 2) pricing input
     const branchId = input.fulfilment.channel === 'delivery' ? undefined : input.fulfilment.branchId
     const taxRate = db.branches.find((b) => b.id === branchId)?.taxRate ?? 0.08
     const promotions: Promotion[] = (input.promotionCodes ?? [])
@@ -70,15 +72,18 @@ export const orderHandlers = [
       promotions,
     })
 
-    // 3) fulfilment (fee lấy từ engine — đã tính free ship)
     const fulfilment: Fulfilment =
       input.fulfilment.channel === 'delivery'
-        ? { channel: 'delivery', addressId: input.fulfilment.addressId, fee: totals.deliveryFee }
+        ? {
+            channel: 'delivery',
+            addressId: input.fulfilment.addressId,
+            fee: totals.deliveryFee,
+            note: input.fulfilment.note,
+          }
         : input.fulfilment.channel === 'pickup'
           ? { channel: 'pickup', branchId: input.fulfilment.branchId, slot: input.fulfilment.slot }
           : { channel: 'dine-in', branchId: input.fulfilment.branchId, tableId: input.fulfilment.tableId }
 
-    // 4) sinh mã
     const maxNum = db.orders.reduce((m, o) => {
       const n = Number(o.code.replace('PF-', ''))
       return Number.isNaN(n) ? m : Math.max(m, n)
@@ -89,7 +94,8 @@ export const orderHandlers = [
     const order: Order = {
       id: `ord-${num}`,
       code: `PF-${num}`,
-      customerName: 'Khách vãng lai',
+      customerName: input.customerName,
+      customerPhone: input.customerPhone,
       channel: input.channel,
       status: 'created',
       lines,
