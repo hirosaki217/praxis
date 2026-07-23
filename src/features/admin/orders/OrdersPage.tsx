@@ -1,24 +1,55 @@
-import { useMemo, useState } from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { ErrorState, FilterBar, LoadingState, PageHeader } from '@/components/shared'
-import type { Channel, Order } from '@/types'
+import { useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { ErrorState, LoadingState, PageHeader } from '@/components/shared'
+import type { Channel, Order, PaymentStatus } from '@/types'
 import { useAdminOrders } from './hooks/useAdminOrders'
 import { useUpdateOrderStatus } from './hooks/useUpdateOrderStatus'
 import { OrderBoard } from './components/OrderBoard'
 import { OrderDetailDrawer } from './components/OrderDetailDrawer'
+import { OrderFilters, type OrderFiltersState } from './components/OrderFilters'
 
-const CHANNEL_OPTIONS: Array<{ value: Channel | 'all'; label: string }> = [
-  { value: 'all', label: 'Tất cả kênh' },
-  { value: 'delivery', label: 'Delivery' },
-  { value: 'pickup', label: 'Pickup' },
-  { value: 'dine-in', label: 'Dine-in' },
-]
+function deriveDateRange(range: OrderFiltersState['dateRange']) {
+  if (range === 'all') return {}
+
+  const now = new Date()
+  const from = new Date()
+
+  if (range === 'today') {
+    from.setHours(0, 0, 0, 0)
+  }
+
+  if (range === 'last7') {
+    from.setDate(now.getDate() - 6)
+    from.setHours(0, 0, 0, 0)
+  }
+
+  if (range === 'last30') {
+    from.setDate(now.getDate() - 29)
+    from.setHours(0, 0, 0, 0)
+  }
+
+  return {
+    createdFrom: from.toISOString(),
+    createdTo: now.toISOString(),
+  }
+}
 
 export default function OrdersPage() {
-  const [channel, setChannel] = useState<Channel | 'all'>('all')
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const filters: OrderFiltersState = {
+    channel: (searchParams.get('channel') as Channel | 'all') ?? 'all',
+    paymentStatus: (searchParams.get('paymentStatus') as PaymentStatus | 'all') ?? 'all',
+    search: searchParams.get('search') ?? '',
+    dateRange: (searchParams.get('dateRange') as OrderFiltersState['dateRange']) ?? 'all',
+  }
+
+  const dateRange = deriveDateRange(filters.dateRange)
   const { data: orders = [], isLoading, isError, refetch } = useAdminOrders({
-    channel: channel === 'all' ? undefined : channel,
+    channel: filters.channel === 'all' ? undefined : filters.channel,
+    paymentStatus: filters.paymentStatus === 'all' ? undefined : filters.paymentStatus,
+    search: filters.search || undefined,
+    createdFrom: dateRange.createdFrom,
+    createdTo: dateRange.createdTo,
   })
   const updateOrderStatus = useUpdateOrderStatus()
 
@@ -27,32 +58,42 @@ export default function OrdersPage() {
     [orders],
   )
 
+  const selectedOrder = ordered.find((order) => order.id === searchParams.get('selectedOrderId')) ?? null
+
+  const handleFilterChange = (next: OrderFiltersState) => {
+    const params = new URLSearchParams(searchParams)
+    if (next.channel === 'all') params.delete('channel')
+    else params.set('channel', next.channel)
+
+    if (next.paymentStatus === 'all') params.delete('paymentStatus')
+    else params.set('paymentStatus', next.paymentStatus)
+
+    if (next.search) params.set('search', next.search)
+    else params.delete('search')
+
+    if (next.dateRange === 'all') params.delete('dateRange')
+    else params.set('dateRange', next.dateRange)
+
+    setSearchParams(params)
+  }
+
   const handleAdvance = async (order: Order, nextStatus: Order['status']) => {
     const updated = await updateOrderStatus.mutateAsync({ id: order.id, status: nextStatus })
-    if (selectedOrder?.id === order.id) setSelectedOrder(updated)
+    if (selectedOrder?.id === order.id) {
+      const params = new URLSearchParams(searchParams)
+      params.set('selectedOrderId', updated.id)
+      setSearchParams(params)
+    }
   }
 
   return (
     <div className='space-y-6'>
       <PageHeader
         title='Order Board'
-        subtitle='Theo dõi các đơn từ storefront theo nhóm trạng thái và cập nhật chúng theo state machine.'
+        subtitle='Theo dõi các đơn từ storefront theo nhóm trạng thái, lọc theo nhu cầu vận hành và cập nhật chúng theo state machine.'
       />
 
-      <FilterBar>
-        <Select value={channel} onValueChange={(value: string) => setChannel(value as Channel | 'all')}>
-          <SelectTrigger className='w-full sm:w-52'>
-            <SelectValue placeholder='Lọc theo kênh' />
-          </SelectTrigger>
-          <SelectContent>
-            {CHANNEL_OPTIONS.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </FilterBar>
+      <OrderFilters value={filters} onChange={handleFilterChange} />
 
       {isLoading ? <LoadingState className='rounded-xl border p-10' label='Đang tải order board…' /> : null}
       {isError ? (
@@ -65,7 +106,11 @@ export default function OrdersPage() {
       {!isLoading && !isError ? (
         <OrderBoard
           orders={ordered}
-          onOpenDetail={setSelectedOrder}
+          onOpenDetail={(order) => {
+            const params = new URLSearchParams(searchParams)
+            params.set('selectedOrderId', order.id)
+            setSearchParams(params)
+          }}
           onAdvance={handleAdvance}
           updatingOrderId={updateOrderStatus.variables?.id}
         />
@@ -75,7 +120,9 @@ export default function OrdersPage() {
         order={selectedOrder}
         open={Boolean(selectedOrder)}
         onOpenChange={(open) => {
-          if (!open) setSelectedOrder(null)
+          const params = new URLSearchParams(searchParams)
+          if (!open) params.delete('selectedOrderId')
+          setSearchParams(params)
         }}
         onAdvance={handleAdvance}
         isUpdating={updateOrderStatus.isPending}

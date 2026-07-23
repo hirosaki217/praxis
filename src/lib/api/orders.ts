@@ -1,10 +1,14 @@
 import type { CreateOrderInput } from '@/validation/order'
-import type { Order, OrderStatus, Channel } from '@/types'
+import type { Order, OrderStatus, Channel, PaymentStatus } from '@/types'
 import { ApiError } from './storefront'
 
 export interface GetOrdersParams {
   status?: OrderStatus
   channel?: Channel
+  search?: string
+  paymentStatus?: PaymentStatus
+  createdFrom?: string
+  createdTo?: string
 }
 
 export interface UpdateOrderStatusInput {
@@ -16,6 +20,10 @@ export async function getOrders(params: GetOrdersParams = {}): Promise<Order[]> 
   const searchParams = new URLSearchParams()
   if (params.status) searchParams.set('status', params.status)
   if (params.channel) searchParams.set('channel', params.channel)
+  if (params.search) searchParams.set('search', params.search)
+  if (params.paymentStatus) searchParams.set('paymentStatus', params.paymentStatus)
+  if (params.createdFrom) searchParams.set('createdFrom', params.createdFrom)
+  if (params.createdTo) searchParams.set('createdTo', params.createdTo)
   const query = searchParams.toString()
   const response = await fetch(query ? `/api/orders?${query}` : '/api/orders')
 

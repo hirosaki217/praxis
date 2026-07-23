@@ -9,14 +9,33 @@ export interface OrderCardProps {
   order: Order
   onOpenDetail: (order: Order) => void
   onAdvance: (order: Order, nextStatus: Order['status']) => void
+  onDragStart: (order: Order) => void
+  onDragEnd: () => void
   isUpdating: boolean
+  isDragging: boolean
 }
 
-export function OrderCard({ order, onOpenDetail, onAdvance, isUpdating }: OrderCardProps) {
+export function OrderCard({
+  order,
+  onOpenDetail,
+  onAdvance,
+  onDragStart,
+  onDragEnd,
+  isUpdating,
+  isDragging,
+}: OrderCardProps) {
   const next = nextStatuses(order.channel, order.status)[0]
 
   return (
-    <div className='space-y-3 rounded-xl border bg-card p-4'>
+    <div
+      draggable
+      onDragStart={() => onDragStart(order)}
+      onDragEnd={onDragEnd}
+      className={[
+        'space-y-3 rounded-xl border bg-card p-4 transition-opacity',
+        isDragging ? 'cursor-grabbing opacity-60' : 'cursor-grab',
+      ].join(' ')}
+    >
       <div className='flex items-start justify-between gap-3'>
         <div>
           <div className='font-mono text-sm font-semibold'>{order.code}</div>

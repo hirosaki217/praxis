@@ -12,9 +12,34 @@ export const orderHandlers = [
     const url = new URL(request.url)
     const status = url.searchParams.get('status') as OrderStatus | null
     const channel = url.searchParams.get('channel')
+    const search = url.searchParams.get('search')?.toLowerCase()
+    const paymentStatus = url.searchParams.get('paymentStatus')
+    const createdFrom = url.searchParams.get('createdFrom')
+    const createdTo = url.searchParams.get('createdTo')
     let items = getDB().orders
     if (status) items = items.filter((o) => o.status === status)
     if (channel) items = items.filter((o) => o.channel === channel)
+    if (paymentStatus) items = items.filter((o) => o.paymentStatus === paymentStatus)
+    if (search) {
+      const normalizedSearch = search.replace(/\s/g, '')
+      items = items.filter((o) => {
+        const normalizedPhone = o.customerPhone?.replace(/\s/g, '') ?? ''
+        return (
+          o.code.toLowerCase().includes(search) ||
+          o.customerName.toLowerCase().includes(search) ||
+          normalizedPhone.includes(normalizedSearch)
+        )
+      })
+    }
+    if (createdFrom) {
+      const from = new Date(createdFrom).getTime()
+      items = items.filter((o) => new Date(o.createdAt).getTime() >= from)
+    }
+    if (createdTo) {
+      const to = new Date(createdTo)
+      to.setHours(23, 59, 59, 999)
+      items = items.filter((o) => new Date(o.createdAt).getTime() <= to.getTime())
+    }
     return HttpResponse.json(items)
   }),
 
